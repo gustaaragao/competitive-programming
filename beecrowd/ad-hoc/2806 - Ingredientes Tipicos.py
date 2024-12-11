@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-def is_tipico(porcao, porcoes_entrada, tipicos, cache):
-    if porcao in cache:
-        return cache[porcao]
+def is_tipico(porcao, porcoes_entrada, tipicos, memoization):
+    if porcao in memoization:
+        return memoization[porcao]
 
     componentes = porcoes_entrada.get(porcao, [])
     
@@ -12,11 +12,11 @@ def is_tipico(porcao, porcoes_entrada, tipicos, cache):
         if componente in tipicos:
             acc_tipicos += 1
         elif componente in porcoes_entrada:
-            if is_tipico(componente, porcoes_entrada, tipicos, cache):
+            if is_tipico(componente, porcoes_entrada, tipicos, memoization):
                 acc_tipicos += 1
 
     resultado = acc_tipicos > (len(componentes) // 2)
-    cache[porcao] = resultado
+    memoization[porcao] = resultado
     return resultado
 
 def main():
@@ -39,9 +39,9 @@ def main():
 
         porcoes_entrada[porcao] = componentes
 
-    cache = {}
+    memoization = {}
     for porcao in porcoes_entrada:
-        if is_tipico(porcao, porcoes_entrada, tipicos, cache):
+        if is_tipico(porcao, porcoes_entrada, tipicos, memoization):
             print("porcao tipica")
         else:
             print("porcao comum")
