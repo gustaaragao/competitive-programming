@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        ".env.*": "dotenv",
-        ".prettierrc": "json",
-        "*.css": "css",
-        "script.py.mako": "python",
-        "1321 - Jollo.C": "cpp"
-    }
-}
