@@ -16,16 +16,7 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 int main(){ _
 
-    string joia;
-
-    set<string> tesouro;
-
-    // Uma abordagem para quando o problema nao tem o numero de linhas no caso de teste
-    while(cin >> joia) {
-        tesouro.insert(joia);
-    }
-
-    cout << tesouro.size() << endl;
+    
 
     return 0;
 }

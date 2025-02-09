@@ -3,6 +3,10 @@
 
 .vscode
 
+*.o
+*.out
+*.exe
+
 ### C ###
 # Prerequisites
 *.d

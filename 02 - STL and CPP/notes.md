@@ -135,3 +135,163 @@ int b = min(1, 2); // 1
 int c = max({1, 2, 3, 4}); // 4
 int d = min({1, 2, 3, 4}); // 1
 ```
+
+## Strings
+
+Um vetor de caracteres.
+
+```cpp
+string str;
+
+string str = "gustavo";
+```
+
+Podemos comparar strings O(|str|) com `==`.
+
+*Truques Legais*
+- Voce pode trazer os caracteres de uma string para numeros inteiros indexados do 0. Para fazer isso basta subtrarir 'a'.
+
+```cpp
+string str = "abcde";
+
+for (int i = 0; i < str.size(); i++) str[i] -= 'a';
+
+cout << "Depois: "
+for (int i = 0; i < str.size(); i++)
+    cout << (int) str[i] << " ";
+cout << endl;
+
+/*
+Depois: 0 1 2 3 4
+*/
+```
+
+## Outras estruturas
+
+### Set
+
+Funciona como um *conjunto* da matematica.
+
+- Muito util para eliminar elementos repetidos.
+
+- Uma estrutura ordenada
+
+Declaramos com `set<meu_tipo>`.
+
+```cpp
+set<int> s;
+
+s.insert(5); // Inserir: O(log(|s|))
+
+s.erase(5); // Remover: O(log(|s|))
+
+s.count(5); // (Conta quantas vezes o elemento aparece) Verifica se um elemento pertence ao conjunto (retorna 0 ou 1)
+```
+
+### Map
+
+Permite usar um tipo qualquer como chave de acesso de algum elemento.
+
+- Uma estrutura ordenada
+
+```cpp
+map<string, int> mp;
+```
+
+- Para acessar um map usamos `mp[x]` O(log(|mp|)). 
+
+```cpp
+map<string,int> mp;
+mp["ribossomo"] = 1;
+cout << mp["mitocondria"] << " " << mp["ribossomo"] << endl;
+
+// Saida:
+// 0 1 (Por padrao ao acessar uma chave nao criada, ele cria uma instancia com o construtor padrao da classe)
+```
+
+## Sort
+
+Funcao que ordena os elementos. O(n.logn)
+
+```cpp
+// Ordena o vetor todo
+sort(v.begin(), v.end());
+
+// Ordena o vetor do inicio ate inicio + n
+sort(v.begin(), v.begin() + n);
+
+// Ordena o vetor do maior elemento para o menor
+sort(v.begin(), v.end(), greater<>());
+```
+
+## Auto
+
+Permite declarar uma variavel sem nomear seu tipo.
+
+- Acontece em tempo de compilacao -> inferencia do tipo
+
+- Nao funciona de forma dinamica como no Python!
+
+- Torna facil de iterar em sets e maps
+
+## Ranged-based for
+
+Um *for* que parece com o python
+
+### Vetor
+
+```cpp
+vector<int> v = {0, 1, 2}
+
+for (auto& i : v) i = i + 1; // Faz um for pelas referencias de i (modifica valor)
+
+for (auto i : v) cout << i << " "; // Faz uma copia do i
+
+cout << endl;
+```
+
+### Set
+
+```cpp
+set<pair<int,char>> s;
+
+s.insert({2, 'a'});
+s.insert({1, 'b'});
+
+for (auto p : s) cout << p.f << " " << p.s << endl;
+
+/* Note que ele ordenou os pares
+1 b
+2 a
+*/
+```
+
+### Map
+
+```cpp
+map<int, char> m;
+
+m[2] = 'b';
+m[1] = 'a';
+
+for (auto i : s) cout << i.f << " " << i.s << endl; // o auto seria um pair<chave, valor>
+
+
+/* Note que ele ordenou os pares
+1 a
+2 b
+```
+
+## Stack e Queue
+
+### Stack (pilha)
+
+- Olhar o elemento mais recente: `.top()`
+- Tirar o elemento mais recente: `.pop()`
+- Inserir um elemento: `.push()`
+
+### Queue (fila)
+
+- Olhar o elemento colocado a mais tempo: `.front()`
+- Tirar o elemento colocado a mais tempo: `.pop()`
+- Inserir um elemento: `.push()`
