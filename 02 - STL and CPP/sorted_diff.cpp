@@ -14,6 +14,8 @@ typedef long long ll;
 const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
+// Nao consegui elaborar o problema: B. Sorted Adjacent Differences
+
 int main(){ _
 
     int t; cin >> t;
