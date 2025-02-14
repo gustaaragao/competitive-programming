@@ -1,8 +1,0 @@
-https://codeforces.com/contest/1339/problem/B - Sorted Adjacent Differences (n entendi como fazer)
-https://codeforces.com/contest/1104/problem/B - game with String (TO)
-https://codeforces.com/contest/1348/problem/B - Phoenix and Beauty
-https://codeforces.com/gym/101755/problem/J - Parallelograms
-https://codeforces.com/contest/1287/problem/B - Hyperset
-https://neps.academy/br/exercise/466 - Distância Entre Amigos
-https://codeforces.com/gym/101350/problem/M - Make Cents?
-https://codeforces.com/contest/1262/problem/D2 - Optimal Subsequences (Hard Version)

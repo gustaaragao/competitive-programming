@@ -18,7 +18,18 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 int main(){ _
 
-    
+    int n; cin >> n;
+    vector<string> v(n);
+    for (int i = 0; i < n; i++) cin >> v[i];
+
+    set<string> s;
+
+    for (int i = n - 1; i >= 0; i--) {
+        if (!s.count(v[i])) {
+            cout << v[i] << endl;
+            s.insert(v[i]);
+        }
+    }
 
     return 0;
 }

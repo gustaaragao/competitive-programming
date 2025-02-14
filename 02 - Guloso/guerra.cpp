@@ -18,7 +18,16 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 int main(){ _
 
+    int s; cin >> s;
+    vector<ll> q(s), n(s);
+    for (int i = 0; i < s; i++) cin >> q[i];    
+    for (int i = 0; i < s; i++) cin >> n[i];
     
+    sort(n.begin(), n.end(), greater<>());
+
+    int ans = 0, j = 0;
+    
+    cout << ans << endl;
 
     return 0;
 }
