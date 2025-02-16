@@ -15,7 +15,7 @@ void insertion_sort(vector<double> &bucket) {
 
 void bucket_sort(vector<double> &v) {
     int n = v.size();
-    vector<double> b[10]; // vetor de listas encadeadas
+    vector<vector<double>> b(10); // vetor de listas encadeadas
     // Preencher os buckets
     for (int i = 0; i < n; i++) {
         int bi = v[i] * 10;
@@ -31,16 +31,4 @@ void bucket_sort(vector<double> &v) {
             i_atual++;
         } 
     }
-}
-
-#define endl '\n'
-
-int main() {
-    vector<double> v = {0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434};
-
-    bucket_sort(v);
-
-    for (auto i : v) cout << i << endl;
-
-    return 0;
 }
