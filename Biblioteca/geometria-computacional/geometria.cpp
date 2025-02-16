@@ -80,11 +80,4 @@ double dist_ponto_reta(const Ponto &p, const Reta &r) {
     return fabs(r.a * p.x + r.b * p.y + r.c) / hypot(r.a, r.b);
 }
 
-// Circulo
-struct Circulo {
-public:
-    T a, b, r;
-};
-
-
 // TODO: Implementar outras estruturas que estao no livro https://usaco.guide/CP2.pdf#page=197
