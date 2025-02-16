@@ -6,6 +6,69 @@ using namespace std;
 
 #define endl '\n'
 
+// Lista de Adjacencia -> O(n + m) --> n: vertices | m: arestas
+struct GrafoLista {
+    public:
+        vector<vector<int>> lista;
+        int n;
+    
+        GrafoLista(int _n) : n(_n), lista(_n) {}
+    
+        void add_lista(vector<vector<int>> _lista) { lista = _lista; }
+    
+        void add_aresta(int inicio, int fim) {
+            lista[inicio].push_back(fim);
+            // lista[fim].push_back(inicio); // Grafo nao direcionado 
+        }
+    };
+    
+    void bfs(const GrafoLista &g, const int &inicio) {
+        int n = g.n;
+        vector<bool> visitados(g.n, false); visitados[inicio] = true;
+        queue<int> fila; fila.push(inicio);
+        while (!fila.empty()) {
+            int atual = fila.front(); fila.pop();
+            cout << atual << " ";
+            for (int filho : g.lista[atual]) {
+                if (!visitados[filho]) {
+                    visitados[filho] = true;
+                    fila.push(filho);
+                }
+            }
+        }
+    }
+    
+    // DFS Recursivo
+    void dfs_recursivo_aux(const GrafoLista &g, const int &inicio, vector<bool> &visitados) {
+        visitados[inicio] = true;
+        cout << inicio << " ";
+        for (int filho : g.lista[inicio]) {
+            if (!visitados[filho]) dfs_recursivo_aux(g, filho, visitados);
+        }
+    }
+    
+    void dfs_recursivo(const GrafoLista &g, const int &inicio) {
+        int n = g.n;
+        vector<bool> visitados(n, false);
+        dfs_recursivo_aux(g, inicio, visitados);
+    }
+    
+    // DFS Interativo
+    void dfs_interativo(const GrafoLista &g, const int &inicio) {
+        int n = g.n;
+        vector<bool> visitados(n, false);
+        stack<int> pilha; pilha.push(inicio);
+        while (!pilha.empty()) {
+            int atual = pilha.top(); pilha.pop();
+            if (!visitados[atual]) {
+                cout << atual << " "; visitados[atual] = true;
+            }
+            for (int vizinho : g.lista[atual]) {
+                if (!visitados[vizinho]) pilha.push(vizinho);
+            }
+        }
+    }
+
 // Matriz de Adjacencia -> O(1)
 struct GrafoMatriz {
 public:
@@ -22,82 +85,54 @@ public:
     }
 };
 
+// BFS
 void bfs(const GrafoMatriz &g, const int &inicio) {
     int n = g.n;
-}
-
-void dfs(const GrafoMatriz &g, const int &inicio) {
-
-}
-
-// Lista de Adjacencia -> O(n + m) --> n: vertices | m: arestas
-struct GrafoLista {
-public:
-    vector<vector<int>> lista;
-    int n;
-
-    GrafoLista(int _n) : n(_n), lista(_n) {}
-
-    void add_lista(vector<vector<int>> _lista) { lista = _lista; }
-
-    void add_aresta(int inicio, int fim) {
-        lista[inicio].push_back(fim);
-        // lista[fim].push_back(inicio); // Grafo nao direcionado 
-    }
-};
-
-void bfs(const GrafoLista &g, const int &inicio, const int &destino = 0) {
-    int n = g.n;
-    vector<bool> visitados(g.n, false); visitados[inicio] = true;
+    vector<bool> visitados(n, false); visitados[inicio] = true;
     queue<int> fila; fila.push(inicio);
-    vector<int> dist(n), pais(n); // Vetores para recuperacao do caminho para destino
-    pais[inicio] = -1;
     while (!fila.empty()) {
         int atual = fila.front(); fila.pop();
         cout << atual << " ";
-        for (int filho : g.lista[atual]) {
-            if (!visitados[filho]) {
-                visitados[filho] = true;
-                fila.push(filho);
-                dist[filho] = dist[atual] + 1; pais[filho] = atual;
+        for (int vizinho = 0; vizinho < n; ++vizinho) {
+            if (g.matriz[atual][vizinho] && !visitados[vizinho]) {
+                visitados[vizinho] = true;
+                fila.push(vizinho);
             }
         }
     }
-    cout << endl;
-    // Recuperar destino
-    if (!visitados[destino]) cout << "NAO";
-    else {
-        vector<int> caminho;
-        for (int vert = destino; vert != -1; vert = pais[vert]) 
-            caminho.push_back(vert);
-        reverse(caminho.begin(), caminho.end());
-        for (int v : caminho) cout << v << " ";
-        cout << endl;
+}
+
+// DFS Recursivo
+void dfs_recursivo_aux(const GrafoMatriz &g, int atual, vector<bool> &visitados) {
+    visitados[atual] = true;
+    cout << atual << " ";
+    for (int vizinho = 0; vizinho < g.n; ++vizinho) {
+        if (g.matriz[atual][vizinho] && !visitados[vizinho]) {
+            dfs_recursivo_aux(g, vizinho, visitados);
+        }
     }
 }
 
-void dfs(const GrafoLista &g, const int &inicio) {
+void dfs_recursivo(const GrafoMatriz &g, const int &inicio) {
     int n = g.n;
-    vector<bool> visitados(g.n, false); visitados[inicio] = true;
+    vector<bool> visitados(n, false);
+    dfs_recursivo_aux(g, inicio, visitados);
+}
+
+// DFS Iterativo
+void dfs_interativo(const GrafoMatriz &g, const int &inicio) {
+    int n = g.n;
+    vector<bool> visitados(n, false);
     stack<int> pilha; pilha.push(inicio);
     while (!pilha.empty()) {
-
+        int atual = pilha.top(); pilha.pop();
+        if (!visitados[atual]) {
+            cout << atual << " "; visitados[atual] = true;
+            for (int vizinho = n - 1; vizinho >= 0; --vizinho) {
+                if (g.matriz[atual][vizinho] && !visitados[vizinho]) {
+                    pilha.push(vizinho);
+                }
+            }
+        }
     }
-}
-
-int main() {
-    GrafoLista g = GrafoLista(5);
-    g.add_aresta(0, 1);
-    g.add_aresta(0, 3);
-    g.add_aresta(1, 0);
-    g.add_aresta(1, 2);
-    g.add_aresta(1, 4);
-    g.add_aresta(2, 1);
-    g.add_aresta(3, 0);
-    g.add_aresta(3, 4);
-    g.add_aresta(1, 3);
-
-    bfs(g, 0, 4);
-
-    return 0;
 }
