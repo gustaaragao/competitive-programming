@@ -14,6 +14,7 @@ int binomial(int n, int m) {
 
 
 int binomial_dp(int n, int m) {
+	// Complexidade O(n^2)
 	vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
 	for (int i = 0; i <= n; i++) {
 		dp[i][0] = 1; // Caso Base (n 0)
