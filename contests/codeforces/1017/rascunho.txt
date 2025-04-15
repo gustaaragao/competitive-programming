@@ -1,0 +1,14 @@
+-n <= l <= 0 <= r <= n
+
+r - l = n
+
+r' - l' = m
+
+Sabemos que m <= n
+
+-n <= l <= l' <= 0 <= r' <= r <= n
+
+Se m <= r, podemos considerar que doença expandiu para todas as casas à direita (l' = 0, r' = m)
+
+Se m > r, podemos considerar que r' = r (ou seja, cresceu o máximo à direita) e depois
+cresceu o resto para esquerda r' - l' = m => r - l' = m => l' = r - m
