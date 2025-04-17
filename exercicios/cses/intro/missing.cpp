@@ -18,7 +18,16 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 int main(){ _
 
-    
+    int n; cin >> n;
+    vector<bool> arr(n, false); 
+    for (int i = 0; i < n - 1; i++) {
+        int temp; cin >> temp;
+        arr[temp - 1] = true;
+    }
 
+    for (int i = 0; i < n; i++) {
+        if (!arr[i]) cout << i + 1 << endl;
+    }
+    
     return 0;
 }

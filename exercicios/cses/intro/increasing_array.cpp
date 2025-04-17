@@ -18,7 +18,19 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 int main(){ _
 
-    
+    int n; cin >> n;
+    vector<ll> arr(n); for (int i = 0; i < n; i++) cin >> arr[i];
+
+    ll ans = 0;
+    for (int i = 1; i < n; i++) {
+        if (arr[i - 1] > arr[i]) {
+            ll diff = arr[i - 1] -  arr[i];
+            ans += diff;
+            arr[i] += diff;
+        }
+    }
+
+    cout << ans << endl;
 
     return 0;
-}
+} 

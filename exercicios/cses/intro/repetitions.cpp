@@ -18,7 +18,16 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 int main(){ _
 
+    string s; cin >> s;
     
+    int ans = 1, count = 1;
+    for (int i = 1; i < s.size(); i++) {
+        if (s[i - 1] != s[i]) count = 1;
+        else count++;
+        ans = max(ans, count);
+    }
+
+    cout << ans << endl;
 
     return 0;
 }

@@ -18,7 +18,11 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 int main(){ _
 
-    
+    int t; cin >> t;
+    while (t--) {
+        ll y, x; cin >> y >> x;
+        
+    }    
 
     return 0;
 }
