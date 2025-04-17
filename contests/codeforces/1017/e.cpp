@@ -3,8 +3,8 @@ using namespace std;
 
 #define _ ios_base::sync_with_stdio(0);cin.tie(0);
 #define endl '\n'
-#define f first
-#define s second
+#define ff first
+#define ss second
 #define pb push_back
 
 #define dbg(x) cout << #x << " = " << x << endl
@@ -20,9 +20,9 @@ int main(){ _
     int t; cin >> t;
     while (t--) {
         int n; cin >> n;
-        vector<ll> arr(n); for (int i = 0; arr.size(); i++) cin >> arr[i];
+        vector<int> arr(n); for (int i = 0; i < n; i++) cin >> arr[i];
         
-    }    
+    }
 
     return 0;
 }
