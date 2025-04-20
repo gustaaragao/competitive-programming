@@ -13,6 +13,7 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> ii;
 
+const ll P = 1000000007;
 const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 

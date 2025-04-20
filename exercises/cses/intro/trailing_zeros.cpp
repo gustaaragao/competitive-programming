@@ -13,13 +13,19 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> ii;
 
-const ll P = 1000000007;
 const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
+ll solve(int n) {
+    // count the number of 5 in factorization(n)
+    if (n == 0) return 0;
+    else return (n / 5L) + solve(n / 5L);
+}
+
 int main(){ _
 
+    ll n; cin >> n;
+    cout << solve(n) << endl;
     
-
     return 0;
 }

@@ -20,7 +20,7 @@ int main(){ _
 
     ll n; cin >> n;
 
-    ll total_sum = (n * (n + 1L)) / 2;
+    ll total_sum = (n * (n + 1LL)) / 2;
     if (total_sum % 2 != 0) cout << "NO" << endl;
     else {
         cout << "YES" << endl;

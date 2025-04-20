@@ -13,13 +13,20 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> ii;
 
-const ll P = 1000000007;
 const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 int main(){ _
-
-    
+    int n; cin >> n;
+    while (n--) {
+        ll a, b; cin >> a >> b;    
+        ll eq1 = 2*a - b, eq2 = 2*b - a;
+        if (eq1 >= 0 && eq2 >= 0 && (eq1 % 3 == 0) && (eq2 % 3 == 0)) {
+            cout << "YES" << endl;
+        } else {
+            cout << "NO" << endl;
+        }
+    }
 
     return 0;
 }
