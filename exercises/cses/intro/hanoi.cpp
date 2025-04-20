@@ -17,21 +17,10 @@ const ll P = 1000000007;
 const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
-
-string to_binary(uint16_t x, int size) {
-    string s;
-    for (int i = size - 1; i >= 0; i--) s += ((x >> i) & 1) ? '1' : '0';
-    return s;
-}
-
 int main(){ _
 
-    int n; cin >> n;
-    uint16_t gray;
-    for (int i = 0; i < (1 << n); i++) { // (1 << n) == 2^n
-        gray = i ^ (i >> 1);
-        cout << to_binary(gray, n) << endl;
-    }
+    ll n; cin >> n;
+    ll ans = (1LL << n) - 1LL; cout << ans << endl;
 
     return 0;
 }
