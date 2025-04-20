@@ -13,16 +13,24 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> ii;
 
+const ll P = 1000000007;
 const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
+ll power(ll base, ll expo, ll mod) {
+    ll ans = 1;
+    while(expo) {
+        if(expo & 1LL) {
+            ans = (ans * base) % mod;
+        }
+        base = (base * base) % mod;
+        expo >>= 1LL;
+    }
+    return ans;
+}
+
 int main(){ _
-
-    int t; cin >> t;
-    while (t--) {
-        ll y, x; cin >> y >> x;
-        
-    }    
-
+    ll n; cin >> n; 
+    cout << power(2, n, P) << endl;
     return 0;
 }
