@@ -19,7 +19,32 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 int main(){ _
 
-    
+    int t; cin >> t;
+    while (t--) {
+        map<char, int> mp_s, mp_t;
+        mp_s['a'] = 1; mp_t['a'] = 1;
+        int q; cin >> q;
+        while (q--) {
+            int op, k; string x;
+            cin >> op >> k >> x;
+            if (op == 1) {
+                while(k--) for (auto c : x) mp_s[c]++;
+            } else {
+                while(k--) for (auto c : x) mp_t[c]++;
+            }
+
+            for (const auto& [key, value] : mp_s) {
+                if (mp_t[key] == value) continue;
+                else if (mp_t[key] > value) {
+                    cout << "YES" << endl;
+                    break;
+                } else {
+                    cout << "NO" << endl;
+                    break;
+                }
+            }
+        }
+    }    
 
     return 0;
 }

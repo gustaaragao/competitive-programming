@@ -19,7 +19,22 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 int main(){ _
 
-    
+    int t; cin >> t;
+    while(t--) {
+        int n, q; cin >> n >> q;
+        vector<ll> a(n); for (auto &x : a) cin >> x;
+        vector<ll> k(q); for (auto &x : k) cin >> x;
+        for (auto length : k) {
+            ll ans = 0;
+            for (auto diff : a) {
+                if (length >= diff) ans += diff;
+                else break;
+            }
+            cout << ans << " ";
+            ans = 0;
+        }
+        cout << endl;
+    }    
 
     return 0;
 }

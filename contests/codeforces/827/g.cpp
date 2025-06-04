@@ -19,7 +19,12 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 int main(){ _
 
-    
+    int t; cin >> t;
+    while (t--) {
+        int n; cin >> n;
+        vector<int> a(n); for (auto &x : a) cin >> x;
+        
+    }
 
     return 0;
 }
