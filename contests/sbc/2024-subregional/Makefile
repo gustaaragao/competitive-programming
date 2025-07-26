@@ -5,7 +5,7 @@ CXXFLAGS =  g++ -g -O2 -std=gnu++20 -static
 SOURCES := $(wildcard *.cpp)
 BINARIES := $(SOURCES:.cpp=)
 
-	all: $(BINARIES) 
+all: $(BINARIES) 
 
 %: %.cpp 
 	$(CXX) $(CXXFLAGS) -o $@ $< 
