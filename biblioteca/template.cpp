@@ -10,7 +10,7 @@ using namespace std;
 #define dbg(x) cout << #x << " = " << x << endl
 
 typedef long long ll;
-typedef pair<int, int> ii;
+typedef pair<int, int> pi;
 
 const ll MOD = 1000000007;
 const int INF = 0x3f3f3f3f;
