@@ -18,7 +18,12 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 int main(){ _
 
-    
+    int t; cin >> t;
+    while (t--) {
+        int n; cin >> n;
+        string s;
+
+    }
 
     return 0;
 }

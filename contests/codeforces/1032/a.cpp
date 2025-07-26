@@ -18,7 +18,17 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 int main(){ _
 
-    
+    int t; cin >> t;
+    while(t--) {
+        int n, s; cin >> n >> s;
+        int v[n]; for (auto &x : v) cin >> x;
+        
+        int dist1, dist2;
+        dist1 = abs(s - v[0]) + abs(v[n - 1] - v[0]);
+        dist2 = abs(v[n - 1] - s) + abs(v[n - 1] - v[0]);
+        cout << min(dist1, dist2) << endl;
+
+    }
 
     return 0;
 }
