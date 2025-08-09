@@ -14,7 +14,6 @@ using namespace std;
 
 typedef long long ll;
 typedef pair<int, int> pi;
-typedef tuple<int, int, int> ti;
 
 const ll MOD = 1000000007;
 const int INF = 0x3f3f3f3f;
@@ -22,6 +21,13 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 signed main(){ _
 
-
+    for (int i = 0; i < 8; i++) {
+        int x; cin >> x;
+        if (x == 9) {
+            cout << "F" << endl;
+            exit(0);
+        }
+    }
+    cout << "S" << endl;
 
 }
