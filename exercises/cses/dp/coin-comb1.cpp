@@ -25,7 +25,7 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 ll dp[MAX_X + 1];
 vector<ll> coins;
 
-// dp[n] = sum{i pertence coins, n - 1 >= 0} dp[n - i]
+// dp[n] = sum{i pertence coins, n - 1 >= 0}{dp[n - i]}
 ll solve(ll sum) {
     for (int i = 1; i <= sum; i++) {
         for (auto c : coins) {
