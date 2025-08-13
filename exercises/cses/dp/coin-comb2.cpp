@@ -30,7 +30,6 @@ ll dp[MAX_N + 1][MAX_X + 2];
 vector<ll> coins;
 
 ll solve(int i, int j) { // i -> moeda, j -> soma
-    // 
     if (i < 0 || j < 0) return 0;
     
     // "Quando eu preciso chegar na soma 0 basta fazer nada (1 forma)"
@@ -42,7 +41,6 @@ ll solve(int i, int j) { // i -> moeda, j -> soma
 }
 
 signed main(){ _
-    
     int n, x; cin >> n >> x;
     for (int i = 0; i < n; i++) {
         int new_value; cin >> new_value;
