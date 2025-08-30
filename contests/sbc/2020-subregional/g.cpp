@@ -17,16 +17,16 @@ typedef pair<int, int> pi;
 
 const ll MOD = 1e9 + 7;
 
+
 signed main(){ _
-    ll w, k; cin >> w >> k;
-    ll ans = 2 * k - w;
+
+    int c; cin >> c;
+    int atual = 100, ans = 100;
+    while (c--) {
+        int v; cin >> v;
+        atual += v;
+        ans = max(ans, atual);
+    }
+
     cout << ans << endl;
 }
-/*
-W -> mestre
-K -> aluno
-
-(x - W) = 2*(x - K)
-x - W = 2x - 2K
-x = 2K - W
-*/
