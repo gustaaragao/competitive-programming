@@ -21,7 +21,7 @@ void solve(vector<int> &arr, int n, int d) {
     int contador_diff_zero = 0;
     for (int i = 0; i < n; i++) {
         if (arr[i] != 0) contador_diff_zero++;
-        if (contador_diff_zero > 2) break;
+        if (contador_diff_zero >= 2) break;
     }
     if (contador_diff_zero == 0) {
         cout << -1 << endl;
@@ -51,7 +51,7 @@ void solve(vector<int> &arr, int n, int d) {
         if (j != -1 && k != -1) break;
         if (arr[i] != 0) {
             if (j == -1) j = i;
-            else (k == -1) k = i;
+            else if (k == -1) k = i;
         }
     }
     int dj = arr[j], dk = arr[k];
@@ -74,7 +74,6 @@ signed main(){ _
     int n, d; cin >> n >> d;
     vector<int> arr(n);
     for (int i = 0; i < n; i++) cin >> arr[i];
-    sort(arr.begin(), arr.end());
     solve(arr, n, d);
 
 }
