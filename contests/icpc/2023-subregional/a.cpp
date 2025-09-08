@@ -19,4 +19,12 @@ const ll MOD = 1e9 + 7;
 
 signed main(){
     FAST_IO
+
+    int n, h; cin >> n >> h;
+    int ans = 0;
+    while (n--) {
+        int x; cin >> x;
+        if (h >= x) ans++;
+    }
+    cout << ans << endl;
 }
