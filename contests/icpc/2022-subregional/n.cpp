@@ -57,10 +57,10 @@ signed main(){
     // Remove do conjunto s ou t
     auto remove = [&] (int i) {
         if (s.count(b[i])) {
-            s.erase(b[i]);
+            s.erase(s.find(b[i]));
             sum_l -= b[i];
         } else {
-            t.erase(b[i]);
+            t.erase(t.find(b[i]));
         }
         relax();
     };
