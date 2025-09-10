@@ -19,8 +19,15 @@ const ll MOD = 1e9 + 7;
 const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
+#define MAXN 1000005
+
+int adj[MAXN][MAXN];
+
 signed main(){
     FAST_IO
 
+    int n; cin >> n;
     
+    ll v[n];
+    for (int i = 0; i < n; i++) cin >> v[n];
 }
