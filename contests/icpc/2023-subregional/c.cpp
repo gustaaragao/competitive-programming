@@ -23,6 +23,29 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 int adj[MAXN][MAXN];
 
+int lis(vector<int> const& a) {
+    int n = a.size();
+    const int INF = 1e9;
+    vector<int> dp(n + 1, INF);
+    dp[0] = -INF;
+    for (int i = 0; i < n; i++) {
+        int l = upper_bound(all(dp), a[i]) - dp.begin();
+        if (dp[l-1] < a[i] && a[i] < dp[l]) {
+            dp[l] = a[i];
+        }
+    }
+    int ans = 0;
+    for (int l = 0; l <= n; l++) {
+        if (dp[l] < INF) ans = l;
+    }       
+    return ans;
+}
+
+void dfs(int s, int f) {
+    
+}
+
+// DFS + LIS
 signed main(){
     FAST_IO
 
