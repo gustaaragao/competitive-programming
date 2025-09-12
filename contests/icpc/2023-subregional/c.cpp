@@ -21,36 +21,75 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 #define MAXN 1000005
 
-int adj[MAXN][MAXN];
+vector<int> adj[MAXN];
+ll values[MAXN];
+int n;
+vector<ll> lis;
+int ans[MAXN];
 
-int lis(vector<int> const& a) {
-    int n = a.size();
-    const int INF = 1e9;
-    vector<int> dp(n + 1, INF);
-    dp[0] = -INF;
-    for (int i = 0; i < n; i++) {
-        int l = upper_bound(all(dp), a[i]) - dp.begin();
-        if (dp[l-1] < a[i] && a[i] < dp[l]) {
-            dp[l] = a[i];
+// u -> nó atual
+// p -> pai do nó atual
+void dfs(int u, int p) {
+    // Passo 1: Encontrar o o valor value[u] na subseq
+    // Lembre-se: lower_bound() encontra o primeiro MENOR
+    auto it = lower_bound(all(lis), values[u]);
+    int pos = it - lis.begin();
+    
+    // Passo 2: Salvar o estado anterior para backtracking
+    bool extended = false;
+    ll old_value = -1;
+
+    if (it == lis.end()) {
+        // values[u] é maior que todos os valores da LIS -> podemos adicionar values[u] na LIS
+        extended = true; 
+    } else {
+        // values[u] é <= que todos os valores da LIS -> podemos substituir
+        old_value = lis[pos];
+    }
+
+    // Passo 3: Atualizar a LIS
+    if (extended) {
+        lis.pb(values[u]);
+    } else {
+        lis[pos] = values[u];
+    }
+
+    ans[u] = lis.size();
+
+    for (int v : adj[u]) {
+        if (v != p) { // Garante que não estamos voltando para o pai
+            dfs(v, u);
         }
     }
-    int ans = 0;
-    for (int l = 0; l <= n; l++) {
-        if (dp[l] < INF) ans = l;
-    }       
-    return ans;
+
+    if (extended) {
+        lis.pop_back();
+    } else {
+        lis[pos] = old_value;
+    }
 }
 
-void dfs(int s, int f) {
-    
-}
-
-// DFS + LIS
-signed main(){
+signed main() {
     FAST_IO
 
-    int n; cin >> n;
-    
-    ll v[n];
-    for (int i = 0; i < n; i++) cin >> v[n];
+    cin >> n;
+    for (int i = 2; i <= n; i++) {
+        int a; cin >> a;
+        int b = i;
+        a--; b--; // 1-indexed -> 0-indexed
+        adj[a].pb(b);
+        adj[b].pb(a);
+    }
+
+    for (int i = 0; i < n; i++) {
+        ll x; cin >> x;
+        values[i] = x;
+    }
+
+    dfs(0, -1);
+
+    for (int i = 1; i < n; i++) {
+        cout << ans[i] << " ";
+    }
+    cout << endl;
 }
