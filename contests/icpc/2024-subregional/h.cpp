@@ -19,6 +19,9 @@ const ll MOD = 1e9 + 7;
 const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
+
 signed main(){
     FAST_IO
+
+    string M, N; cin >> M >> N;
 }
