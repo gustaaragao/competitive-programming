@@ -20,6 +20,59 @@ const ll MOD = 1e9 + 7;
 const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
+int n, k;
+
+void solve() {
+    vector<ll> a(n), cnt(n+1);
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+        cnt[a[i]]++;
+    }
+    // É possível dividir i para cada pacote k de forma igual?
+    for (int i = 0; i <= n; i++) {
+        if (cnt[i] % k != 0) {
+            cout << 0 << endl;
+            return;
+        }
+    }
+    
+    ll ans = 0;
+    // Two Pointers / Sliding Windows
+    vector<ll> c(n+1);
+    for (int l = 0, r = 0; r >= l && r < n; r++) {
+        c[a[r]]++;
+        while (c[a[r]] > (cnt[a[r]] / k)) {
+            c[a[l]]--;
+            l++;
+        }
+        ans += r - l + 1;
+    }
+    cout << ans << endl;
+}
+
 signed main(){
     FAST_IO
+
+    int t; cin >> t;
+    while (t--) {
+        cin >> n >> k;
+        solve();
+    }
 }
+
+/*
+Considere cnt[i] o número de ocorrências de i em a[].
+
+Como temos k multiset, cada multiset deve ter cnt[i] / k ocorrências de i.
+
+Vamos considerar uma subarray a[l...r], t.q c[i] é o número de ocorrências de i na subarray a[l...r]
+    - O enunciado fala que todos os elementos de a[l...r] precisam ir para a multiset 1.
+    - Note que a[l...r] para um valor i pode ter c[i] = cnt[i] / k, mas também pode ter c[i] < cnt[i] / k,
+    ou seja, todos os valores necessários ou um pouco menos que o suficiente. Porém, jamais deve ter mais!
+
+Logo, uma subarray a[l...r] é awesome 
+<=> 
+Para todo i de a[l...r] que aparece c[i] vezes vale a seguinte desigualdade: c[i] <= cnt[i] / k.
+
+Logo, o problema é contar o número de subarray que vale a propriedade descrita anteriormente. :)
+*/

@@ -1,0 +1,21 @@
+# Tópicos para Estudar
+two pointer / sliding window
+guloso
+binary search
+bitmask
+o básico de teoria dos números
+o básico de grafos (dfs, bfs, dijkstra, floyd warshall)
+prefix sum
+combinatória
+dp
+
+# Tópicos apareceram ao estudar
+- fenwick tree --> Finalizar aula da USP e estudar CP-Algoritms
+- line sweep -> melhorar o código com a maneira como exibir e adicionar questão de geometria
+    -> https://cp-algorithms.com/geometry/intersecting_segments.html
+- segment tree
+- aritmetica modular
+    a * b = (a % MOD) * (b % MOD) % MOD
+    a + b = (a + b) % MOD
+    a - b = (a - b + MOD) % MOD
+    a / b = INVERSO MODULAR # Estudar
