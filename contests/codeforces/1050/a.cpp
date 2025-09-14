@@ -22,4 +22,13 @@ const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 signed main(){
     FAST_IO
+    int t; cin >> t;
+    while (t--) {
+        int x, n; cin >> x >> n;
+        if (n % 2 == 0) {
+            cout << 0 << endl;
+        } else {
+            cout << x << endl;
+        }
+    }
 }
