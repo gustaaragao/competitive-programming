@@ -14,12 +14,17 @@ using namespace std;
 
 typedef long long ll;
 typedef pair<int, int> pi;
-typedef tuple<int, int, int> ti;
 
 const ll MOD = 1e9 + 7;
 const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
+void solve(){
+    
+}
+
 signed main(){
     FAST_IO
+    int tc; cin >> tc;
+    while (tc--) solve();
 }

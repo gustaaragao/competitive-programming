@@ -37,15 +37,16 @@ void solve() {
     }
     
     ll ans = 0;
-    // Two Pointers / Sliding Windows
+    // Sliding Windows
     vector<ll> c(n+1);
     for (int l = 0, r = 0; r >= l && r < n; r++) {
         c[a[r]]++;
         while (c[a[r]] > (cnt[a[r]] / k)) {
+            // Condição para Contrair a Sliding Window
             c[a[l]]--;
             l++;
-        }
-        ans += r - l + 1;
+        } ans += r - l + 1;
+       
     }
     cout << ans << endl;
 }
@@ -60,7 +61,7 @@ signed main(){
     }
 }
 
-/*
+/* Explicação:
 Considere cnt[i] o número de ocorrências de i em a[].
 
 Como temos k multiset, cada multiset deve ter cnt[i] / k ocorrências de i.
