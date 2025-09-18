@@ -21,3 +21,47 @@ dp
 - line sweep -> melhorar o código com a maneira como exibir e adicionar questão de geometria
     -> https://cp-algorithms.com/geometry/intersecting_segments.html
 - segment tree
+
+# Coisas legais 1
+Soluções de algumas questões da Primeira Fase:
+
+Questão L: https://pastebin.com/Ku74Ypx9
+Questão K: https://pastebin.com/3Dm58bvd
+Questão H: https://pastebin.com/3jSnMbVk
+Questão I: https://pastebin.com/VyXM0wwT
+Questão B: https://pastebin.com/yGRAB3xc
+Operações com Bit: https://www.youtube.com/watch?v=xXKL9YBWgCY&t=368s
+Operações com Módulo/Resto: https://www.youtube.com/watch?v=-OPohCQqi_E&t=240s
+Exponenciação Binária: https://www.youtube.com/watch?v=L-Wzglnm4dM
+
+# Coisas legais 2 (BS)
+- busca binária EPS:
+https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1282
+
+- busca binária + simulação:
+último atCoder
+https://br.spoj.com/problems/PAO07/
+https://codeforces.com/problemset/problem/121/A
+https://www.urionlinejudge.com.br/judge/pt/problems/view/2832
+https://www.urionlinejudge.com.br/judge/pt/problems/view/2853
+https://www.urionlinejudge.com.br/judge/pt/problems/view/1627
+http://codeforces.com/problemset/problem/279/B
+
+- Busca binária + matemática:
+http://codeforces.com/contest/988/problem/D
+
+- Busca binária + prefix sum:
+https://codeforces.com/contest/1073/problem/C
+
+- Gerar todos os subsets usando bitmask (inteiros), usar hash e busca binária com unique, também gerando todos os conjuntos:
+https://www.urionlinejudge.com.br/judge/pt/problems/view/2093
+
+- Busca binária, probabilidade e geometria:
+https://www.urionlinejudge.com.br/judge/pt/problems/view/2573
+
+Questões que @gvss indicou sobre Busca Binária:
+https://www.urionlinejudge.com.br/judge/pt/problems/view/2973
+https://www.urionlinejudge.com.br/judge/pt/problems/view/1579
+https://codeforces.com/contest/978/problem/C
+https://codeforces.com/problemset/problem/1324/D
+https://codeforces.com/problemset/problem/279/B
