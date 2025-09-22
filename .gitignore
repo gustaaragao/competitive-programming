@@ -2,6 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=c,c++,python,visualstudiocode
 
 input
+output
 
 .vscode
 
