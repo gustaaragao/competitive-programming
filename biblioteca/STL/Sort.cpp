@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 vector<int> v = {1, 2, 3, 4};
-
 signed main() {
     // Ordenação CRESCENTE (Padrão)
     sort(v.begin(), v.end());
