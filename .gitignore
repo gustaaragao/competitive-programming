@@ -276,3 +276,5 @@ pyrightconfig.json
 # End of https://www.toptal.com/developers/gitignore/api/c,c++,python,visualstudiocode
 
 # Generated using ignr.py - github.com/Antrikshy/ignr.py
+*:Zone.Identifier
+a.out
