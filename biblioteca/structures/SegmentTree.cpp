@@ -3,26 +3,26 @@ using namespace std;
 #define endl '\n'
 const int INF = 0x3f3f3f3f;
 #define MAXN 1000000
-int v[MAXN], seg[4*MAXN]; // a SegTree está 0-INDEXED
-// FUNÇÕES DE APOIO
+int n, v[MAXN], seg[4*MAXN]; // a SegTree está 0-INDEXED
+// Funções de Apoio
 int single(int x) {return x;}
 int neutral() {return -INF;}
 int merge(int a, int b) {return max(a, b);}
 // p -> índice na segtree, [l, r] -> intervalo da subarray
-int build(int p, int l, int r) { // O(n)
+int build(int p=1, int l=0, int r=n-1) { // O(n)
     if (l == r) return seg[p] = single(v[l]);
     int m = (l+r)/2;
     return seg[p] = merge(build(2*p, l, m), build(2*p+1, m+1, r));
 }
 // query no intervalo [a, b]
-int qry(int a, int b, int p, int l, int r) { // O(log(n))
-    if (b < l or a > r) return neutral(); // ou 0
+int qry(int a, int b, int p=1, int l=0, int r=n-1) { // O(log(n))
+    if (b < l or a > r) return neutral();
     if (a <= l and r <= b) return seg[p];
     int m = (l+r)/2;
     return merge(qry(a, b, 2*p, l, m), qry(a, b, 2*p+1, m+1, r));
 }
 // update 
-int upd(int i, int x, int p, int l, int r) { // O(log(n))
+int upd(int i, int x, int p=1, int l=0, int r=n-1) { // O(log(n))
     if (i < l or r < i) return seg[p];
     if (l == r) return seg[p] = single(x);
     int m = (l+r)/2;
@@ -30,7 +30,7 @@ int upd(int i, int x, int p, int l, int r) { // O(log(n))
 }
 // primeira posição >= x em [a, b] (ou -1, caso não exista)
 // Obs.: Só funciona na SegTree de Máximos
-int first_above(int x, int a, int b, int p, int l, int r) { // O(log(n))
+int first_above(int x, int a, int b, int p=1, int l=0, int r=n-1) { // O(log(n))
     if (b < l or r < a or seg[p] < x) return -1;
 	if (l == r) return l;
 	int m = (l+r)/2;
@@ -40,7 +40,7 @@ int first_above(int x, int a, int b, int p, int l, int r) { // O(log(n))
 }
 // última posição >= x em [a, b] (ou -1, caso não exista)
 // Obs.: Só funciona na SegTree de Máximos
-int last_above(int x, int a, int b, int p, int l, int r) { // O(log(n))
+int last_above(int x, int a, int b, int p=1, int l=0, int r=n-1) { // O(log(n))
     if (b < l or r < a or seg[p] < x) return -1;
 	if (l == r) return l;
 	int m = (l+r)/2;
@@ -50,7 +50,7 @@ int last_above(int x, int a, int b, int p, int l, int r) { // O(log(n))
 }
 signed main() {
     ios_base::sync_with_stdio(0);cin.tie(0);
-    int n; cin >> n;
+    cin >> n;
     // Leitura de v[]
     for(int i = 0; i < n; i++) cin >> v[i];
     // Construir a SegTree

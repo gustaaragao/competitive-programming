@@ -27,14 +27,17 @@ int upd(int i, int x, int p, int l, int r) {
     int m = (l+r)/2;
     return seg[p] = merge(upd(i, x, 2*p, l, m), upd(i, x, 2*p+1, m+1, r));
 }
-// find_kth é 1-INDEXED -> O(log(n))
+// find_kth -> O(log(n))
+// k é 1-INDEXED e o Retorno é 0-INDEXED
 int find_kth(int k, int p, int l, int r) {
     if (k > seg[p]) return -1;
     if (l == r) return l;
     int m = (l + r) / 2;
     if (seg[p*2] >= k)
+        // Filho da Esquerda
         return find_kth(k, p*2, l, m);
-    else
+        else
+        // Filho da Direita
         return find_kth(k - seg[p*2], p*2+1, m+1, r);
 }
 // Para adaptar esse problema para Kth Zero basta usar o operador "!"
