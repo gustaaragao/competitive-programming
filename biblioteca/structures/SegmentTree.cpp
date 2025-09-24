@@ -6,8 +6,8 @@ const int INF = 0x3f3f3f3f;
 int v[MAXN], seg[4*MAXN]; // a SegTree está 0-INDEXED
 // FUNÇÕES DE APOIO
 int single(int x) {return x;}
-int neutral() {return INF;}
-int merge(int a, int b) {return min(a, b);}
+int neutral() {return -INF;}
+int merge(int a, int b) {return max(a, b);}
 // p -> índice na segtree, [l, r] -> intervalo da subarray
 int build(int p, int l, int r) { // O(n)
     if (l == r) return seg[p] = single(v[l]);
@@ -27,6 +27,26 @@ int upd(int i, int x, int p, int l, int r) { // O(log(n))
     if (l == r) return seg[p] = single(x);
     int m = (l+r)/2;
     return seg[p] = merge(upd(i, x, 2*p, l, m), upd(i, x, 2*p+1, m+1, r));
+}
+// primeira posição >= x em [a, b] (ou -1, caso não exista)
+// Obs.: Só funciona na SegTree de Máximos
+int first_above(int x, int a, int b, int p, int l, int r) { // O(log(n))
+    if (b < l or r < a or seg[p] < x) return -1;
+	if (l == r) return l;
+	int m = (l+r)/2;
+	int left = first_above(x, a, b, 2*p, l, m);
+	if (left != -1) return left;
+	return first_above(x, a, b, 2*p+1, m+1, r);
+}
+// última posição >= x em [a, b] (ou -1, caso não exista)
+// Obs.: Só funciona na SegTree de Máximos
+int last_above(int x, int a, int b, int p, int l, int r) { // O(log(n))
+    if (b < l or r < a or seg[p] < x) return -1;
+	if (l == r) return l;
+	int m = (l+r)/2;
+	int right = last_above(x, a, b, 2*p+1, m+1, r);
+	if (right != -1) return right;
+	return last_above(x, a, b, 2*p, l, m);
 }
 signed main() {
     ios_base::sync_with_stdio(0);cin.tie(0);
