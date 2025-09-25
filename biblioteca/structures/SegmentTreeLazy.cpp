@@ -32,7 +32,7 @@ int qry(int a, int b, int p=1, int l=0, int r=n-1) {
     return merge(qry(a, b, 2*p, l, m), qry(a, b, 2*p+1, m+1, r));
 }
 // update -> Para todo v[i] += x, com a <= i <= b.
-int upd(int a, int b, int x, int p=1, int l=0, int r=n-1) { // 
+int upd(int a, int b, int x, int p=1, int l=0, int r=n-1) {
     prop(p, l, r);
     if (a <= l and r <= b) {
 		lazy[p] += x;
@@ -44,7 +44,7 @@ int upd(int a, int b, int x, int p=1, int l=0, int r=n-1) { //
 	return seg[p] = merge(upd(a, b, x, 2*p, l, m), upd(a, b, x, 2*p+1, m+1, r));
 }
 // Função para visitar as folhas, ou seja, o v[]
-void get_leafs (int p = 1, int l = 0, int r = n - 1) { // O(n)
+void get_leafs(int p = 1, int l = 0, int r = n - 1) { // O(n)
     prop(p, l, r);
     if (l == r) {
         leafs[l] = seg[p];
