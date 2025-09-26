@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// 0-INDEXED
 struct fenw {
     int n;
     vector<int> bit;
