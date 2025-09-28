@@ -4,6 +4,9 @@ int n, x;
 bool possible(int m) { return true; }; // O(M)
 // Retorna o primeiro elemento que valida nossa propriedade
 // lower_bound -> primeiro valor >= x (Primeiro Verdadeiro (MINIMIZAR))
+// O nosso f(x) precisa ser:
+// - f(x) = 1, então f(y) = 1 para todo y >= x
+// - f(x) = 0, então f(y) = 0 para todo y <= x.
 int bs(int x) { // O(M*log(n))
     int l = 0, r = n; // r = MAX
     while (l < r) {
@@ -15,6 +18,9 @@ int bs(int x) { // O(M*log(n))
     return l;
 }
 // Retorna o último elemento que valida nossa propriedade
+// O nosso f(x) precisa ser:
+// - f(x) = 1, então f(y) = 1 para todo y <= x
+// - f(x) = 0, então f(y) = 0 para todo y >= x.
 int bs_last(int x) {
     int l = -1, r = n; // r = MAX
     while (l < r) {
