@@ -21,14 +21,7 @@ less<T>,        // greater<T> -> Ordem Decrescente
 rb_tree_tag,    // Red-black Tree -> Inserção, Remoção e Busca em O(log(n))
 tree_order_statistics_node_update
 >;
-template <class T>
-using ord_multiset = tree<
-    T,              
-    null_type,      
-    less_equal<T>,  // greater_equal<T> -> Ordem Decrescente
-    rb_tree_tag,    
-	tree_order_statistics_node_update
->;
+// Você pode fazer um multiset com ord_set<pair<T, int>>, o segundo elemento é um índice por exemplo.
 signed main() {
     ord_set<int> s;
     // Inserção
@@ -50,10 +43,5 @@ signed main() {
     while (s.begin() != it_end) {
         s.erase(s.begin());
     }
-    // Remoção - Multiset
-    ord_multiset<int> ms;
-    ms.erase(5); // apaga TODOS os 5!
-    auto it = ms.find_by_order(ms.order_of_key(5)); // primeiro "5"
-    ms.erase(it);   // remove só um
 }
 // https://codeforces.com/blog/entry/123624
