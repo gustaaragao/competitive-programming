@@ -9,6 +9,7 @@ using ord_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_n
 #define eb emplace_back
 #define ff first
 #define ss second
+#define sz(x) (int) (x).size()
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
 #define dbg(x) cout << #x << " = " << x << endl
