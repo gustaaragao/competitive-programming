@@ -64,5 +64,5 @@ Caso a gente remova uma aresta do ciclo temos uma árvore.
 Ou seja, precisamos verificar se o grafo é:
 - Conexo. --> DFS
 - n = m. (Pois, ao remover a aresta do ciclo temos n = m - 1 -> Definição de Árvore)
-    -> Fazer essa verificação mostra se o Grafo tem APENAS UM CICLO
+    -> Fazer essa verificação mostra que o Grafo tem APENAS UM CICLO
 */

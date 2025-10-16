@@ -23,12 +23,15 @@ const int MAXN = 2e5 + 10;
 int n, q;
 vector<int> adj[MAXN], path;
 bool vis[MAXN];
+int subtree_size[MAXN];
 
 void dfs(int v) {
     vis[v] = true;
+    subtree_size[v] = 1;
     path.pb(v);
     for (auto u : adj[v]) if(!vis[u]) {
         dfs(u);
+        subtree_size[v] += subtree_size[u];
     }
 }
 
@@ -43,14 +46,22 @@ signed main(){
     for (int v = 0; v < n; v++)
         sort(all(adj[v]));
     
-    for (int i = 0; i < q; i++) {
+    dfs(0);
+
+    map<int, int> mp;
+    for (int i = 0; i < n; i++) {
+        mp[path[i]] = i;
+    }
+
+    while (q--) {
         int u, k; cin >> u >> k;
         u--; k--;
-        path.clear();
-        fill(vis, vis+MAXN, false);
-        dfs(u);
-        if ((k+1) <= sz(path)) {
-            cout << (path[k]+1) << endl;
+        // Passo 1: Encontrar u em path
+        int pos = mp[u];
+        
+        // o Kth elemento na subtree enraizada em u está na posição path[pos + k]
+        if (k < subtree_size[u]) {
+            cout << (path[pos + k] + 1) << endl;
         } else {
             cout << -1 << endl;
         }
