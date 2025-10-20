@@ -5,6 +5,7 @@ const int MAXN = 1e5 + 10;
 int n, m;
 vector<int> adj[MAXN], dist(MAXN, -1), parent(MAXN, -1);
 bool vis[MAXN];
+// BFS Multisource -> bfs(vector<pi> ms): permite fazer BFS em várias fontes
 // Encontrar o menor ciclo de um grafo ou menor ciclo que possui um vértice
 // Encontrar a menor distância de s para todos os outros vértices
 void bfs(int s) { // O(V + E)
@@ -21,6 +22,7 @@ void bfs(int s) { // O(V + E)
         }
     }
 }
+// https://cp-algorithms.com/graph/breadth-first-search.html
 signed main() {
     cin >> n >> m;
     for (int i = 0; i < m; i++) {
@@ -44,5 +46,5 @@ signed main() {
             cout << path.top() + 1 << " ";
         }
         cout << endl;
-    }   
+    }
 }
