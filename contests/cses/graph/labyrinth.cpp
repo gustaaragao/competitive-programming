@@ -24,13 +24,13 @@ const tuple<int, int, char> mov[4] = {
 };
 
 int n, m;
-char grid[MAX][MAX];
+char grid[MAX][MAX], directions[MAX][MAX];
 int dist[MAX][MAX];
 pi parent[MAX][MAX];
 
 bool valid(int i, int j) {
     return i>=0 and j>=0 and i<n and j<m 
-            and (dist[i][j] == -1) and (grid[i][j] == '.'); 
+            and (dist[i][j] == -1) and (grid[i][j] != '#'); 
 }
 
 void bfs(pi s) {
@@ -45,6 +45,7 @@ void bfs(pi s) {
                 q.push({ni, nj});
                 dist[ni][nj] = dist[i][j] + 1;
                 parent[ni][nj] = {i, j}; 
+                directions[ni][nj] = d;
             }
         }
     }
@@ -63,27 +64,17 @@ signed main(){
         }
     }
     bfs(a);
-    if (dist[b.ff][b.ss] == -1) {
+    if (dist[b.ff][b.ss] == -1) { // Não visitado
         cout << "NO" << endl;
     } else {
         cout << "YES" << endl;
         cout << dist[b.ff][b.ss] << endl;
-        stack<pi> path;
-        for (pi v = b; (v.ff != -1) and (v.ss != -1); v = parent[v.ff][v.ss]) {
-            path.push(v);
+        vector<char> path;
+        for (pi v = b; parent[v.ff][v.ss] != pi{-1, -1}; v = parent[v.ff][v.ss]) {
+            path.pb(directions[v.ff][v.ss]);  // movimento que levou do pai a v
         }
-        pi fir = path.top(); path.pop();
-        while (!path.empty()) {
-            pi actual = path.top(); path.pop();
-            if ((fir.ff == actual.ss - 1) and (fir.ff == actual.ss)) {
-                cout << "" << endl;
-            } else if ((fir.ff == actual.ss) and (fir.ff == actual.ss - 1)) {
-                cout << "" << endl;
-            } else if ((fir.ff - 1 == actual.ss) and (fir.ff == actual.ss)) {
-                cout << "" << endl;
-            } else { // (fir.ff == actual.ss - 1) and (fir.ff == actual.ss)
-                cout << "" << endl;
-            }
-        }
+        reverse(all(path));
+        for (auto x : path) cout << x;
+        cout << endl;
     }
 }
