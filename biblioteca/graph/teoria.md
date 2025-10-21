@@ -58,4 +58,10 @@ O número de vizinhos de um vértice é chamado de **grau**.
 
 ## Diâmetro
 
-Consiste no **maior caminho de uma árvore**.
+Consiste no **maior caminho de uma árvore**. 
+Algoritmo: 
+1. Roda BFS para um vértice qualquer u para encontrar o vértice v mais distante.
+2. Roda BFS para o vértice v para encontrar o vértice w mais distante, o caminho v até w é o diâmetro.
+
+## Grafo Bipartido
+
