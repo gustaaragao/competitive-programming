@@ -10,22 +10,33 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
 #define dbg(x) cout << #x << " = " << x << endl
+#define int long long
 
-typedef long long ll;
 typedef pair<int, int> pi;
 
-const ll MOD = 1e9 + 7;
-const int INF = 0x3f3f3f3f;
-const ll LINF = 0x3f3f3f3f3f3f3f3fll;
-
+const int INF = 0x3f3f3f3f3f3f3f3fll;
 const int MAX = 1e5+10;
 
 int n, m;
-vector<int> adj[MAX];
-int dist[MAX][MAX], cost[MAX][MAX];
-bool vis[MAX]; 
-
+vector<pi> adj[MAX]; // {vizinho, peso}
+bool vis[MAX];
+int dist[MAX];
+ 
 void dijkstra(int s) {
+    fill(dist, dist+MAX, INF);
+    fill(vis, vis+MAX, false);
+    // priority_queue de {distancia, vertice}
+    priority_queue<pi, vector<pi>, greater<pi>> pq;
+    pq.push({0, s}); dist[s] = 0;
+    while (!pq.empty()) {
+        auto [d, v] = pq.top(); pq.pop();
+        if (vis[v]) continue;
+        vis[v] = true;
+        for (auto [u, w] : adj[v]) if (dist[u] > dist[v] + w) {
+            dist[u] = dist[v] + w;
+            pq.push({dist[u], u});
+        }
+    }
 }
 
 signed main(){
@@ -33,7 +44,11 @@ signed main(){
     cin >> n >> m;
     for (int i = 0; i < m; i++) {
         int a, b, c; cin >> a >> b >> c; a--, b--;
-        adj[a].pb(b);
-        cost[a][b] = c;
+        adj[a].pb({b, c});
     }
+    dijkstra(0);
+    for (int i = 0; i < n; i++) {
+        cout << dist[i] << " ";
+    }
+    cout << endl;
 }
