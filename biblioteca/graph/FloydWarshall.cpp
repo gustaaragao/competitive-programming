@@ -12,15 +12,6 @@ int w[MAXN][MAXN];
 // dist[i][j] -> matriz com a menor distância entre os vértices i e j 
 int dist[MAXN][MAXN];
 
-void floyd_warshall() {
-    for (int k = 0 ; k < n ; k++) {
-        for (int i = 0 ; i < n ; i++) {
-            for (int j = 0 ; j < n ; j++) {
-                dist[i][j] = min(dist[i][j] , dist[i][k] + dist[k][j]) ;
-            }
-        }
-    }
-}
 void initialize() {
     for (int i = 0 ; i < n ; i++) {
         for (int j = 0 ; j < n ; j++) {
@@ -28,6 +19,15 @@ void initialize() {
                 dist[i][j] = 0;
             } else {
                 dist[i][j] = INF ;
+            }
+        }
+    }
+}
+void floyd_warshall() {
+    for (int k = 0 ; k < n ; k++) {
+        for (int i = 0 ; i < n ; i++) {
+            for (int j = 0 ; j < n ; j++) {
+                dist[i][j] = min(dist[i][j] , dist[i][k] + dist[k][j]) ;
             }
         }
     }
