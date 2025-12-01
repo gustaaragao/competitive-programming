@@ -1,0 +1,92 @@
+\documentclass[10pt]{article}
+\usepackage[left=0.4in,right=0.4in,top=0.7in,bottom=0.4in]{geometry}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tocloft}
+\usepackage{pdflscape}
+\usepackage{multicol}
+
+\renewcommand*{\ttdefault}{pcr}
+\renewcommand\cftsecfont{\fontsize{10}{11}\bfseries}
+\renewcommand\cftsecpagefont{\fontsize{10}{11}\mdseries}
+\renewcommand\cftsubsecfont{\fontsize{8}{9}\mdseries}
+\renewcommand\cftsubsecpagefont{\fontsize{8}{9}\mdseries}
+\renewcommand\cftsecafterpnum{\vspace{-1ex}}
+\renewcommand\cftsubsecafterpnum{\vspace{-1ex}}
+
+\lstdefinestyle{shared}{
+    belowcaptionskip=1\baselineskip,
+    breaklines=true,
+    xleftmargin=\parindent,
+    showstringspaces=false,
+    basicstyle=\fontsize{7}{7}\ttfamily,
+}
+\lstdefinestyle{cpp}{
+	style=shared,
+    language=C++,
+    keywordstyle=\bfseries\color{black},
+    commentstyle=\itshape\color{black!90},
+    identifierstyle=\color{black},
+    stringstyle=\color{black!80},
+}
+\lstdefinestyle{java}{
+    style=shared,
+    language=Java,
+    keywordstyle=\bfseries\color{black},
+    commentstyle=\itshape\color{black!90},
+    identifierstyle=\color{black},
+    stringstyle=\color{black!80},
+}
+\lstdefinestyle{py}{
+    style=shared,
+    language=Python,
+    keywordstyle=\bfseries\color{black},
+    commentstyle=\itshape\color{black!90},
+    identifierstyle=\color{black},
+    stringstyle=\color{black!80},
+}
+\lstdefinestyle{bash}{
+    style=shared,
+    language=bash,
+    keywordstyle=\bfseries\color{black},
+    commentstyle=\itshape\color{black!90},
+    identifierstyle=\color{black},
+    stringstyle=\color{black!80},
+}
+\lstdefinestyle{txt}{
+    style=shared,
+}
+\lstset{escapechar=@}
+
+\pagestyle{fancy}
+\fancyhead[L]{Universidade Federal de Sergipe - Greedy (Grupo de Estudos em Programação Competitiva)}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{}
+
+\fancypagestyle{plain}
+{
+\fancyhead[L]{Universidade Federal de Sergipe - Greedy (Grupo de Estudos em Programação Competitiva)}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{}
+}
+
+\title{\vspace{-4ex}\Large{Universidade Federal de Sergipe}}
+\author{Greedy}
+\date{}
+
+\begin{document}
+\begin{landscape}
+\begin{multicols}{2}
+
+\maketitle
+\vspace{-13ex}
+\tableofcontents
+\pagestyle{fancy}
+
+\input contents.tex
+
+\end{multicols}
+\end{landscape}
+\end{document}

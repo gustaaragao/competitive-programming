@@ -1,0 +1,16 @@
+# Arquivos gerados
+code/
+contents.txt
+contents.tex
+
+# Arquivos auxiliares do LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.synctex.gz
+
+# PDF final (opcional - remova esta linha se quiser versionar o PDF)
+# notebook.pdf

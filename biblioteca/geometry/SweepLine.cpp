@@ -15,7 +15,7 @@ typedef struct Evento {
     }
 } evento_t;
 
-int main() { _
+int main() {
     int n; cin >> n;
     vector<evento_t> ev;
     // Leitura dos eventos
@@ -38,7 +38,7 @@ int main() { _
 }
 
 /*
-Problemas de line-sweep sao descritas por duas variaveis:
+Problemas de sweep line sao descritas por duas variaveis:
 - Localizacao temporal ou espacial;
 - Tipo do evento
 
