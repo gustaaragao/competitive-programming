@@ -2,7 +2,7 @@
 using namespace std;
 const int MAXN = 1e2 + 10, MAXW = 1e5 + 10;
 int n, w_max, v[MAXN], w[MAXN], dp[MAXN][MAXW];
-int solve(int i, int limit) {
+int solve(int i, int limit) { // O(nW) -> n: num de itens, W: peso máximo mochila
     // Chegou no fim do array de itens
     if (i == n) return dp[i][limit] = 0; // ou INF, para min()
     // Chegou no limite de peso
