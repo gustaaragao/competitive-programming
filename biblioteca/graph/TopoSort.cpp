@@ -1,46 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 // Grafo Acíclico Dirigido (DAG)
 // - Arestas = Dependências -> Ex.: Disciplinas e Pre-requisitos
 // - Definição: É uma permutação dos vértices tal que 
 // para toda aresta v -> u, v aparece antes de u.
 // - Ordem de execução da DP
-
 const int MAXN=1e5+10;
-
 int n, color[MAXN];
-vector<int> adj[MAXN];
-// Ideia 1: Usando DFS
-deque<int> order;
-bool dfs(int v) { // É possível fazer sem o bool
+vector<int> adj[MAXN]; deque<int> order;
+void dfs(int v) {
     color[v] = 1;
     for (auto u : adj[v]) {
-        if (color[u] == 0) {
-            // dfs(u)
-            if (!dfs(u)) return false;
-        } else if (color[u] == 1) {
-            // exit(-1)
-            return false; // Não é um DAG
+        if (color[u] == 0) dfs(u);
+        if (color[u] == 1) { // Achou um ciclo
+            cout << "IMPOSSIBLE!" << endl;
+            exit(0); // Não é um DAG
         }
     }
     order.push_front(v);
-    color[v] = 2; // Marcou o vértice como finalizado
-    return true;
+    color[v] = 2;
 }
-bool topoSort() {
+void topoSort() {
     for (int v = 0; v < n; v++) {
-        if (color[v] == 0) {
-            if (!dfs(v)) return false;
-        }
+        if (color[v] == 0) dfs(v);
     }
-    return true;
-}
-signed main() {
-    if (topoSort()) {
-        for (auto x : order) cout << x << " ";
-    } else {
-        cout << "Impossible";
-    }
-    cout << endl;
 }
