@@ -3,7 +3,7 @@ using namespace std;
 // Grafo Acíclico Dirigido (DAG)
 // - Arestas = Dependências -> Ex.: Disciplinas e Pre-requisitos
 // - Definição: É uma permutação dos vértices tal que 
-// para toda aresta v -> u, v aparece antes de u.
+// para toda aresta v -> u, v aparece antes de u e "u depende de v"
 // - Ordem de execução da DP
 const int MAXN=1e5+10;
 int n, color[MAXN];
