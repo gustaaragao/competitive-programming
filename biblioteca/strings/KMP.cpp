@@ -30,12 +30,3 @@ vector<int> matching(string &t, string& s) {
     }
     return match;
 }
-
-vector<int> autKMP(string &s) {
-
-}
-
-vector<int> matchingAut(string &t, string &s) {
-    vector<int> match;
-    return match;   
-}
