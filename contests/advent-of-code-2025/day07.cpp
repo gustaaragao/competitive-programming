@@ -19,20 +19,30 @@ signed main() {
         input.push_back(line);
     }
     n = sz(input), m = sz(input[0]);
+    pair<int, int> st;
+    for (int j = 0; j < m; j++) {
+        if (input[0][j] == 'S') {
+            st = {0, j};
+            break;
+        }
+    }
     vector<vector<int>> dp(n+1, vector<int>(m+1, 0));
+    // Caso Base
+    dp[st.first][st.second] = 1;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            if (input[i][j] == '|' or input[i][j] == 'S') {
-                if (valid(i+1, j)) {
-                    if (input[i+1][j] == '.') {
-                        input[i+1][j] = '|';
-                    } else if (input[i+1][j] == '^') {
-                        if (valid(i+1, j-1) and input[i+1][j-1] == '.') {
-                            input[i+1][j-1] = '|';
-                        }
-                        if (valid(i+1, j+1) and input[i+1][j+1] == '.') {
-                            input[i+1][j+1] = '|';
-                        }
+            if (valid(i+1, j)) {
+                if (input[i+1][j] == '.') {
+                    // input[i+1][j] = '|';
+                    dp[i+1][j] += dp[i][j];
+                } else if (input[i+1][j] == '^') {
+                    if (valid(i+1, j-1) and input[i+1][j-1] == '.') {
+                        // input[i+1][j-1] = '|';
+                        dp[i+1][j-1] += dp[i][j];
+                    }
+                    if (valid(i+1, j+1) and input[i+1][j+1] == '.') {
+                        // input[i+1][j+1] = '|';
+                        dp[i+1][j+1] += dp[i][j];
                     }
                 }
             }
