@@ -2,8 +2,10 @@
 using namespace std;
 
 #define endl '\n'
+#define int long long
 
 signed main() {
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
     string in;
     int pos = 50, ans = 0;
     while (cin >> in) {
