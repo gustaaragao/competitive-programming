@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 struct dsu {
-    // pai = representante
+    // pai = representante do conjunto
     vector<int> parent, size;
     dsu(int n) {
         parent.resize(n);
@@ -11,6 +11,7 @@ struct dsu {
             size[i] = 1;
         }
     }
+    // find e uni: O(a(n)) ~= O(1) armotizado
     int find(int i) { 
         // Path Compression
         return parent[i] = (parent[i] == i) ? i : find(parent[i]);
