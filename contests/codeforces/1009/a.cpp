@@ -9,11 +9,13 @@ using namespace std;
 #define ss second
 
 void solve() {
-    int n; cin >> n;
-    vector<int> w(n), p(n);
-    for (auto &i : w) cin >> i;
-    for (auto &i : p) cin >> i;
-    
+    int l, r, d, u; cin >> l >> r >> d >> u;
+    if ((r == l) and (l == u) and (u == d)) {
+        cout << "Yes";
+    } else {
+        cout << "No";
+    }
+    cout << endl;
 }
 
 signed main(){
