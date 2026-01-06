@@ -4,29 +4,32 @@ int n, x;
 bool possible(int m) { return true; }; // O(M)
 // Retorna o primeiro elemento que valida nossa propriedade
 // lower_bound -> primeiro valor >= x (Primeiro Verdadeiro (MINIMIZAR))
-// O nosso f(x) precisa ser:
-// - f(x) = 1, então f(y) = 1 para todo y >= x
-// - f(x) = 0, então f(y) = 0 para todo y <= x.
+// O nosso f(x) precisa ser: [F, F, F, F, T, T, T, T], ele para quando encontrar o primeiro T.
 int bs(int x) { // O(M*log(n))
-    int l = 0, r = n; // r = MAX
-    while (l < r) {
+    int ans = -1, l = 0, r = 1e18; // r = MAX
+    while (l <= r) {
         int m = l + (r-l)/2; // Piso
-        if (possible(m)) r = m;
-        else l = m + 1;
+        if (possible(m)) {
+            ans = m;
+            r = m - 1;
+        } else {
+            l = m + 1;
+        }
     }
-    if (l == n) return -1;
-    return l;
+    return ans;
 }
 // Retorna o último elemento que valida nossa propriedade
-// O nosso f(x) precisa ser:
-// - f(x) = 1, então f(y) = 1 para todo y <= x
-// - f(x) = 0, então f(y) = 0 para todo y >= x.
+// O nosso f(x) precisa ser: [T, T, T, T, F, F, F, F], ele para quando encontrar o último T.
 int bs_last(int x) {
-    int l = -1, r = n; // r = MAX
-    while (l < r) {
-        int m =  l + (r-l+1)/2; // Teto (Último Verdadeiro (MAXIMIZAR))
-        if (possible(m)) l=m;
-        else r=m-1;
+    int ans = -1, l = 0, r = 1e18; // r = MAX
+    while (l <= r) {
+        int m = l + (r-l)/2; // Teto (Último Verdadeiro (MAXIMIZAR))
+        if (possible(m)) {
+            ans = m;
+            l = m + 1;
+        } else {
+            r = m - 1;
+        }
     }
-    return l; // Caso não encontre, retorna -1
+    return ans;
 }

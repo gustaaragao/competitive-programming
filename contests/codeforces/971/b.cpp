@@ -12,6 +12,21 @@ using namespace std;
 #define rall(x) (x).rbegin(), (x).rend()
 #define dbg(x) cout << #x << " = " << x << endl
 
+void solve() {
+    int n; cin >> n;
+    vector<int> ans;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 4; j++) {
+            char c; cin >> c;
+            if (c == '#') ans.pb(j+1);
+        }
+    }
+    reverse(all(ans));
+    for (auto x : ans) cout << x << " ";
+    cout << endl;
+}
+
 signed main(){
     ios_base::sync_with_stdio(0);cin.tie(0);
+    int tc; cin >> tc; while(tc--) solve();
 }

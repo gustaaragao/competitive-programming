@@ -7,12 +7,11 @@ using namespace std;
 #define eb emplace_back
 #define ff first
 #define ss second
-
-void solve() {
-    
-}
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+#define dbg(x) cout << #x << " = " << x << endl
 
 signed main(){
     ios_base::sync_with_stdio(0);cin.tie(0);
-    int tc; cin >> tc; while(tc--) solve();
+    
 }

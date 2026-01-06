@@ -7,6 +7,10 @@ using namespace std;
 #define eb emplace_back
 #define ff first
 #define ss second
+#define sz(x) (int) (x).size()
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+#define dbg(x) cout << #x << " = " << x << endl
 
 void solve() {
     
