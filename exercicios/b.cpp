@@ -17,23 +17,24 @@ const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 void solve(){
-    int n, m; cin >> n >> m;
-    vector<int> arr(n);
-    for (auto &i : arr) cin >> i;
-    int ans = LLONG_MIN, i = 0, sum = 0;
-    for (int j = 0; j < n; j++) {
-        sum += arr[j]; // cresce a janela
-        while (sum > m) {
-            // a soma da janela é maior que o m
-            sum -= arr[i]; // remove o início
-            i++;
-        }
-        ans = max(ans, sum);
+    int n, k; cin >> n >> k;
+    vector<int> a(n);
+    vector<int> freq(n + 5, 0);
+    
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+        freq[a[i]]++;
     }
-    cout << ans << endl;
+    
+    int total_mex = 0;
+    while (freq[total_mex] > 0) {
+        total_mex++;
+    }
+    
+    cout << min(k - 1, total_mex) << endl;
 }
 
 signed main(){
-    ios_base::sync_with_stdio(0);cin.tie(0);
-    int tc = 1; while(tc--) solve();
+    ios_base::sync_with_stdio(0); cin.tie(0);
+    int tc; cin >> tc; while(tc--) solve();
 }

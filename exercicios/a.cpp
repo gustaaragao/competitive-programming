@@ -17,23 +17,18 @@ const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 
 void solve(){
-    int n, m; cin >> n >> m;
-    vector<int> arr(n);
-    for (auto &i : arr) cin >> i;
-    int ans = LLONG_MIN, i = 0, sum = 0;
-    for (int j = 0; j < n; j++) {
-        sum += arr[j]; // cresce a janela
-        while (sum > m) {
-            // a soma da janela é maior que o m
-            sum -= arr[i]; // remove o início
-            i++;
-        }
-        ans = max(ans, sum);
+    int n; cin >> n;
+    vector<int> a(n);
+    for (auto &i : a) cin >> i;
+    if (a[0] == 1 or a[n-1] == 1) {
+        cout << "Alice";
+    } else {
+        cout << "Bob";
     }
-    cout << ans << endl;
+    cout << endl;
 }
 
 signed main(){
     ios_base::sync_with_stdio(0);cin.tie(0);
-    int tc = 1; while(tc--) solve();
+    int tc; cin >> tc; while(tc--) solve();
 }
