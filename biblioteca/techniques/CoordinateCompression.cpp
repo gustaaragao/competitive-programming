@@ -10,7 +10,7 @@ void coordinate_compression(vector<int> &v) {
         coord[x] = idx;
         idx++;
     }
-    for (int i = 0; i < v.size(); i++) {
+    for (int i = 0; i < (int) v.size(); i++) {
         v[i] = coord[v[i]];
     }
 }

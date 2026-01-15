@@ -9,7 +9,15 @@ int n, m;
 char grid[MAX][MAX];
 bool vis[MAX][MAX];
 // Movimentos: cima, baixo, esquerda, direita
-pi mov[4] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+pi mov[16] = {
+    // Esquerda, Direita, Cima, Baixo
+    {-1, 0}, {1, 0}, {0, -1}, {0, 1},
+    // Diagonais
+    {-1, -1}, {1, 1}, {-1, 1}, {1, -1},  
+    // Movimento de cavalo
+    {-2, -1}, {2, 1}, {-2, 1}, {2, -1},   
+    {-1, -2}, {1, 2}, {-1, 2}, {1, -2}
+};
 // Função para validar de new_i, new_j são válidos
 bool valid(int i, int j) {
     // Podemos adicionar outras CONDIÇÕES...

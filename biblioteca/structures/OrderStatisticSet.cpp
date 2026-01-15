@@ -3,27 +3,21 @@
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace std;
 using namespace __gnu_pbds;
-
 // Consiste em uma Árvore Binária Balanceada (std::set + superpoderes)
 // Armazena elementos únicos e de forma ordenada
 // Operações:
 // 1 - Todas de um std::set
 // 2 - find_by_order(k): retorna um iterator para o k-ésimo valor (0-INDEXED) (O(log(n)))
-// 3 - order_of_key(k): retorna o número de elementos estritamente:
-//      - menores, se less<T>
-//      - maiores, se greater<T>
+// 3 - order_of_key(k): retorna o número de elementos estritamente menores
 // que k. (ou seja, o NÚMERO DE INVERSÕES)
 template <class T>
-using ord_set = tree<
-T,              // Tipo da Chave
-null_type,      // Tipo do Valor -> Caso seja definido, a ED vira um std::map
-less<T>,        // greater<T> -> Ordem Decrescente
-rb_tree_tag,    // Red-black Tree -> Inserção, Remoção e Busca em O(log(n))
-tree_order_statistics_node_update
->;
-// Você pode fazer um multiset com ord_set<pair<T, int>>, o segundo elemento é um índice por exemplo.
+using ordered_set = tree<
+    T, null_type, less<T>, 
+    rb_tree_tag, tree_order_statistics_node_update>;
+// Você pode fazer um multiset com ordered_set<pair<T, int>>, o segundo elemento 
+// é um índice por exemplo.
 signed main() {
-    ord_set<int> s;
+    ordered_set<int> s;
     // Inserção
     for (int i = 0; i < 10; i++) s.insert(i);
     // Leitura
