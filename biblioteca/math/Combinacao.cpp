@@ -2,7 +2,7 @@
 using namespace std;
 const int MAXN = 100;
 int comb[MAXN+1][MAXN+1];
-// pre calculando as combinacoes
+// pre calculando as combinacoes -> O(n)
 void pre() {
     comb[0][0] = 1;
     for (int n = 1; n <= MAXN; n++) {

@@ -24,4 +24,6 @@ N = (p1 ^ e1) * (p2 ^ e2) * ... * (pk ^ ek)
 A quantidade de divisores de um número N, denotada por d(N), é calculada a partir de seus expoentes primos
 
 d(N) = (e1 + 1)(e2 + 1)...(ek + 1)
+
+Obs.: a qtd de divisores de N só é ímpar, se N for um QUADRADO PERFEITO!
 */
