@@ -7,6 +7,7 @@ vector<vector<int>> adj;
 void dfs(int v) {
     tin[v] = timer;
     euler[timer++] = v;
+    // for (auto u : adj[v]) if (u != p) { // Árvore
     for (auto u : adj[v]) if (tin[u] == -1) {
         dfs(u);
     }
