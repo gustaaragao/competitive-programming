@@ -28,8 +28,14 @@ void dfs(int v) {
         ans.pb({min(v, parent[v]), max(v, parent[v])});
     }
 }
-signed main() {
+void find_bridges() {
     memset(parent, -1, sizeof(parent));
+    for (int v = 0; v < n; v++) {
+        if (lvl[v] == 0) {
+            lvl[v] = 1; // marca como visitado
+            dfs(v);
+        }
+    }
 }
 // https://onlinejudge.org/external/7/796.pdf
 /*
