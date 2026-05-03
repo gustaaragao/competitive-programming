@@ -1,27 +1,3 @@
-# Tópicos apareceram ao resolver questão
-- two pointer e sliding window
-- binary search
-- aritmetica modular
-    a * b = (a % MOD) * (b % MOD) % MOD
-    a + b = (a + b) % MOD
-    a - b = (a - b + MOD) % MOD
-    a / b = INVERSO MODULAR # Estudar
-- segment tree
-
-# Tópicos que Lucas Recomendou:
-guloso
-bitmask
-o básico de teoria dos números
-o básico de grafos (dfs, bfs, dijkstra, floyd warshall)
-prefix sum
-combinatória
-dp
-
-- fenwick tree --> Finalizar aula da USP e estudar CP-Algoritms
-- line sweep -> melhorar o código com a maneira como exibir e adicionar questão de geometria
-    -> https://cp-algorithms.com/geometry/intersecting_segments.html
-- segment tree
-
 # Coisas legais 1
 Soluções de algumas questões da Primeira Fase:
 

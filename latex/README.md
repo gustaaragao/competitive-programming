@@ -9,8 +9,7 @@ Baseado no [notebook do stanfordacm](https://github.com/jaehyunp/stanfordacm).
 ### 1. LaTeX
 
 ```bash
-sudo apt-get install texlive-full
-sudo apt-get install latexmk
+sudo apt-get install texlive-full latexmk
 ```
 
 ### 2. Python
