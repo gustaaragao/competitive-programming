@@ -8,6 +8,7 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
 #define dbg(x) cerr << #x << " = " << x << endl
+#define pdbg(x) cerr << #x << " = " << x.ff << "," << x.ss << endl
 #define uniq(v) sort(all(v)); v.erase(unique(all(v)), v.end())
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 typedef long long ll;
@@ -16,14 +17,7 @@ typedef pair<int, int> pi;
 // const int INF = 0x3f3f3f3f;
 // const ll LINF = 0x3f3f3f3f3f3f3f3fll;
 // const int MAXN = 2e5+5;
-
-void solve() {
-
-}
-
 signed main() {
     ios_base::sync_with_stdio(0);cin.tie(0);
-    int tc = 1; 
-    // cin >> tc; 
-    while(tc--) solve();
+    cout.precision(10); cout.setf(ios::fixed);
 }
