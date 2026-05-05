@@ -12,7 +12,9 @@ using namespace std;
 #define uniq(v) sort(all(v)); v.erase(unique(all(v)), v.end())
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 typedef long long ll;
+typedef long double ld;
 typedef pair<int, int> pi;
+// const ld EPS = 1e-9;
 // const int MOD = 1e9 + 7; // 998244353;
 // const int INF = 0x3f3f3f3f;
 // const ll LINF = 0x3f3f3f3f3f3f3f3fll;
