@@ -1,8 +1,8 @@
-\subsection{Definições}
+\subsubsection{Definições}
 
 Algumas definições e termos importantes:
 
-\subsubsection{Funções}
+\paragraph{Funções}
 
 \begin{itemize}\setlength\itemsep{0pt}
     \item \textbf{Comutativa:} Uma função $f(x, y)$ é comutativa se $f(x, y) = f(y, x)$.
@@ -10,11 +10,11 @@ Algumas definições e termos importantes:
     \item \textbf{Idempotente:} Uma função $f(x, y)$ é idempotente se $f(x, x) = x$.
 \end{itemize}
 
-\subsection{Números primos}
+\subsubsection{Números primos}
 
 Números primos são muito úteis para funções de hashing (dentre outras coisas). Aqui vão vários números primos interessantes:
 
-\subsubsection{Primos com truncamento à esquerda}
+\paragraph{Primos com truncamento à esquerda}
 
 Números primos tais que qualquer sufixo deles é um número primo:
 \begin{center}
@@ -22,17 +22,17 @@ Números primos tais que qualquer sufixo deles é um número primo:
 357,686,312,646,216,567,629,137
 \end{center}
 
-\subsubsection{Primos gêmeos (Twin Primes)}
+\paragraph{Primos gêmeos (Twin Primes)}
 
 Pares de primos da forma $(p, p+2)$ (aqui tem só alguns pares aleatórios, existem muitos outros).
 
-\subsubsection{Números primos de Mersenne}
+\paragraph{Números primos de Mersenne}
 
 São os números primos da forma $2^m - 1$, onde $m$ é um número inteiro positivo.
 
-\subsection{Operadores lineares}
+\subsubsection{Operadores lineares}
 
-\subsubsection{Rotação no sentido anti-horário por $\theta$}
+\paragraph{Rotação no sentido anti-horário por $\theta$}
 
 \[
 \begin{bmatrix}
@@ -41,7 +41,7 @@ São os números primos da forma $2^m - 1$, onde $m$ é um número inteiro posit
 \end{bmatrix}
 \]
 
-\subsubsection{Reflexão em relação à reta $y = mx$}
+\paragraph{Reflexão em relação à reta $y = mx$}
 
 \[
 \frac{1}{m^2 + 1}
@@ -51,7 +51,7 @@ São os números primos da forma $2^m - 1$, onde $m$ é um número inteiro posit
 \end{bmatrix}
 \]
 
-\subsubsection{Inversa de uma matriz $2 \times 2$ $A$}
+\paragraph{Inversa de uma matriz $2 \times 2$ $A$}
 
 \[
 \begin{bmatrix}
@@ -65,7 +65,7 @@ d & -b \\
 \end{bmatrix}
 \]
 
-\subsubsection{Cisalhamento horizontal por $K$}
+\paragraph{Cisalhamento horizontal por $K$}
 
 \[
 \begin{bmatrix}
@@ -74,7 +74,7 @@ d & -b \\
 \end{bmatrix}
 \]
 
-\subsubsection{Cisalhamento vertical por $K$}
+\paragraph{Cisalhamento vertical por $K$}
 
 \[
 \begin{bmatrix}
@@ -83,7 +83,7 @@ K & 1
 \end{bmatrix}
 \]
 
-\subsubsection{Mudança de base}
+\paragraph{Mudança de base}
 
 $\vec{a}_\beta$ são as coordenadas do vetor $\vec{a}$ na base $\beta$.\\
 $\vec{a}$ são as coordenadas do vetor $\vec{a}$ na base canônica.\\
@@ -103,7 +103,7 @@ C = \begin{bmatrix}
 \end{bmatrix}
 \]
 
-\subsubsection{Propriedades das operações de matriz}
+\paragraph{Propriedades das operações de matriz}
 
 \begin{align*}
 (AB)^{-1} &= B^{-1}A^{-1} \\
@@ -119,9 +119,9 @@ Seja $A$ uma matriz $N \times N$:
 \det(kA) = k^N \det(A)
 \]
 
-\subsection{Sequências numéricas}
+\subsubsection{Sequências numéricas}
 
-\subsubsection{Sequência de Fibonacci}
+\paragraph{Sequência de Fibonacci}
 
 Primeiros termos: 1, 1, 2, 3, 5, 8, 13, 21, 34, \dots
 
@@ -148,7 +148,7 @@ F_n
 \end{bmatrix}
 \]
 
-\subsubsection{Sequência de Catalan}
+\paragraph{Sequência de Catalan}
 
 Primeiros termos: 1, 1, 2, 5, 14, 42, 132, 429, 1430, \dots
 
@@ -169,9 +169,9 @@ Propriedades úteis:
     \item $C_n$ é o número de sequências de parênteses bem formadas com $n$ pares de parênteses.
 \end{itemize}
 
-\subsection{Análise combinatória}
+\subsubsection{Análise combinatória}
 
-\subsubsection{Fatorial}
+\paragraph{Fatorial}
 
 O fatorial de um número $n$ é o produto de todos os inteiros positivos menores ou iguais a $n$.\\
 O fatorial conta o número de permutações de $n$ elementos.
@@ -180,49 +180,49 @@ n! = n \cdot (n - 1)!
 \]
 Em particular, $0! = 1$.
 
-\subsubsection{Combinação}
+\paragraph{Combinação}
 
 Conta o número de maneiras de escolher $k$ elementos de um conjunto de $n$ elementos.
 \[
 \binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}
 \]
 
-\subsubsection{Arranjo}
+\paragraph{Arranjo}
 
 Conta o número de maneiras de escolher $k$ elementos de um conjunto de $n$ elementos, onde a ordem importa.
 \[
 P(n, k) = \frac{n!}{(n - k)!}
 \]
 
-\subsubsection{Estrelas e barras}
+\paragraph{Estrelas e barras}
 
 Conta o número de maneiras de distribuir $n$ elementos idênticos em $k$ recipientes distintos.
 \[
 \binom{n + k - 1}{k - 1}
 \]
 
-\subsubsection{Princípio da inclusão-exclusão}
+\paragraph{Princípio da inclusão-exclusão}
 
 O princípio da inclusão-exclusão é uma técnica para contar o número de elementos em uma união de conjuntos.
 \[
 \left| \bigcup_{i=1}^n A_i \right| = \sum_{k=1}^n (-1)^{k+1} \sum_{1 \le i_1 < \dots < i_k \le n} |A_{i_1} \cap \dots \cap A_{i_k}|
 \]
 
-\subsubsection{Princípio da casa dos pombos}
+\paragraph{Princípio da casa dos pombos}
 
 Se $n$ pombos são colocados em $m$ casas, então pelo menos uma casa terá $\left\lceil \frac{n}{m} \right\rceil$ pombos ou mais.
 
-\subsection{Teoria dos números}
+\subsubsection{Teoria dos números}
 
-\subsubsection{Pequeno teorema de Fermat}
+\paragraph{Pequeno teorema de Fermat}
 
 Se $p$ é um número primo e $a$ é um inteiro não divisível por $p$, então $a^{p-1} \equiv 1 \pmod p$.
 
-\subsubsection{Teorema de Euler}
+\paragraph{Teorema de Euler}
 
 Se $m$ e $a$ são inteiros positivos coprimos, então $a^{\phi(m)} \equiv 1 \pmod m$, onde $\phi(m)$ é a função totiente de Euler.
 
-\subsubsection{Aritmética modular}
+\paragraph{Aritmética modular}
 
 Quando estamos trabalhando com aritmética módulo um número $p$, todos os valores existentes estão entre $[0, p-1]$.\\
 Algumas propriedades e equivalências úteis para usar aritmética modular em código são:
