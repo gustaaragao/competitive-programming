@@ -31,12 +31,16 @@ def normalize(s):
 
 def format_name(filename):
     """Formata o nome do arquivo para exibição"""
+    import re
     # Remove extensão (se houver)
     if '.' in filename:
         name = filename.rsplit('.', 1)[0]
     else:
         # Arquivo sem extensão (ex: Makefile, vimrc)
         name = filename
+    
+    # Remove numeração inicial (ex: "1. STL" -> "STL")
+    name = re.sub(r'^\d+[\.\-_\s]*', '', name)
     
     # Substitui underscores e hífens por espaços
     name = name.replace('_', ' ').replace('-', ' ')
@@ -104,8 +108,7 @@ def write_folders_content(f, biblioteca_path):
     }
     
     # Ignorar esses arquivos/pastas (gerais)
-    ignore_files_general = ['cpp.json', 'makefile.json', 'build_library.py', 
-                           'README_BUILD.md', '.gitignore', 'teoria.md']
+    ignore_files_general = ['cpp.json', 'makefile.json', 'build_library.py', 'README_BUILD.md', '.gitignore']
     
     # Ignorar nas pastas que não são utils
     ignore_files_non_utils = ignore_files_general + ['Makefile', 'vimrc', 'template.cpp']
@@ -124,6 +127,8 @@ def write_folders_content(f, biblioteca_path):
         if folder_name == 'utils':
             code_files = sorted([f for f in item.iterdir() 
                                if f.is_file() and f.name not in ignore_files_general])
+        elif folder_name == 'teoria':
+            code_files = sorted([f for f in item.glob('*.tex')])
         else:
             code_files = sorted([f for f in item.glob('*.cpp') 
                                if f.name not in ignore_files_non_utils])
@@ -138,9 +143,10 @@ def write_folders_content(f, biblioteca_path):
             subsection_name = format_name(filename)
             
             # Calcular hash (apenas para arquivos de código)
-            file_hash = calculate_hash(code_file)
-            if file_hash:
-                subsection_name = f"{subsection_name} ({file_hash})"
+            if not filename.endswith('.tex'):
+                file_hash = calculate_hash(code_file)
+                if file_hash:
+                    subsection_name = f"{subsection_name} ({file_hash})"
             
             f.write(f'{filename}\t{subsection_name}\n')
             
@@ -150,7 +156,10 @@ def write_folders_content(f, biblioteca_path):
                 content = source.read()
             
             with open(dest_path, 'w', encoding='utf-8') as dest:
-                dest.write(normalize(content))
+                if filename.endswith('.tex'):
+                    dest.write(content)
+                else:
+                    dest.write(normalize(content))
         
         f.write('\n')
 

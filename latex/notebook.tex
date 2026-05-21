@@ -7,6 +7,10 @@
 \usepackage{tocloft}
 \usepackage{pdflscape}
 \usepackage{multicol}
+\usepackage{amsmath,amssymb}
+
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\bigO}[1]{-- $O(#1)$}
 
 \renewcommand*{\ttdefault}{pcr}
 \renewcommand\cftsecfont{\fontsize{10}{11}\bfseries}
@@ -55,10 +59,13 @@
     identifierstyle=\color{black},
     stringstyle=\color{black!80},
 }
+\lstdefinestyle{md}{
+    style=shared,
+    basicstyle=\fontsize{8}{8}\ttfamily\bfseries\color{black},
+}
 \lstdefinestyle{txt}{
     style=shared,
 }
-\lstset{escapechar=@}
 
 \pagestyle{fancy}
 \fancyhead[L]{Universidade Federal de Sergipe - Greedy (Grupo de Estudos em Programação Competitiva)}
@@ -78,10 +85,22 @@
 
 \begin{document}
 \begin{landscape}
+
+\begin{titlepage}
+    \centering
+    \vspace*{5cm}
+    {\Huge\bfseries Universidade Federal de Sergipe \par}
+    \vspace{2cm}
+    {\Huge\bfseries Biblioteca de Algoritmos \par}
+    \vspace{1cm}
+    {\Large\bfseries Greedy \par}
+    {\Large Grupo de Estudos em Programação Competitiva \par}
+    \vfill
+    {\large \today \par}
+\end{titlepage}
+
 \begin{multicols}{2}
 
-\maketitle
-\vspace{-13ex}
 \tableofcontents
 \pagestyle{fancy}
 

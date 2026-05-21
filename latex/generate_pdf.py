@@ -64,6 +64,8 @@ def get_style(filename):
         return 'py'
     elif ext in ['sh', 'bash']:
         return 'bash'
+    elif ext in ['md']:
+        return 'md'
     else:
         return 'txt'
 
@@ -91,8 +93,11 @@ def get_tex(sections):
         
         for (filename, subsection_name) in subsections:
             tex += '\\subsection{%s}\n' % texify(subsection_name)
-            tex += '\\raggedbottom\\lstinputlisting[style=%s]{%s/%s}\n' % (
-                get_style(filename), CODE_DIR, filename)
+            if filename.endswith('.tex'):
+                tex += '\\input{%s/%s}\n' % (CODE_DIR, filename)
+            else:
+                tex += '\\raggedbottom\\lstinputlisting[style=%s]{%s/%s}\n' % (
+                    get_style(filename), CODE_DIR, filename)
             tex += '\\hrulefill\n'
         
         tex += '\n'

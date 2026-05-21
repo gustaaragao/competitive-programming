@@ -16,7 +16,7 @@ void crivo() { // O(nlog(log(n)))
     }
 }
 // Crivo até N 
-// Útil quando queremos fatorar números até MAXN²
+// Útil quando queremos fatorar números até MAXN^2
 void crivo() {
     for (int i = 0; i < MAXN; i++) primo[i] = true;
     primo[0] = primo[1] = false;

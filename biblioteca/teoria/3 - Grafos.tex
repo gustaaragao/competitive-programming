@@ -1,0 +1,56 @@
+\subsection{Definições Iniciais}
+
+\begin{itemize}\setlength\itemsep{0pt}
+    \item \textbf{Grafo:} Um grafo é um conjunto de vértices e um conjunto de arestas que conectam os vértices. Formalmente, $G(V, E)$ onde $V$ é o conjunto de vértices e $E$ o conjunto de arestas.
+    \item \textbf{Caminho:} Um caminho $P$ de $x_0$ para $x_k$ é um subgrafo não vazio da forma $V = \{x_0, x_1, \dots, x_k\}$ e $E = \{\{x_0, x_1\}, \{x_1, x_2\}, \dots, \{x_{k-1}, x_k\}\}$ em que todos os $x_i$ são distintos.
+    \item \textbf{Comprimento de um caminho:} Definido como o número de arestas em $E$.
+    \item \textbf{Vizinho:} Para cada vértice, os vértices que podemos atingir a partir das suas arestas são conhecidos como vizinhos.
+    \item \textbf{Grau:} O número de vizinhos de um vértice.
+\end{itemize}
+
+\subsection{Ciclos}
+
+\begin{itemize}\setlength\itemsep{0pt}
+    \item \textbf{Ciclo:} Sendo $P$ um caminho de $x_0$ para $x_k$ de comprimento $\ge 2$, um ciclo é definido como $P + \{x_k, x_0\}$, ou seja, adiciona uma aresta fechando o ciclo.
+    \item \textbf{Ciclo Simples:} É um tipo especial de ciclo onde:
+    \begin{itemize}\setlength\itemsep{0pt}
+        \item Nenhum vértice (além do inicial e final) se repete.
+        \item Nenhuma aresta se repete.
+        \item Tem ao menos 3 vértices distintos (em grafos simples), ou seja, comprimento $\ge 3$.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Conectividade}
+
+\begin{itemize}\setlength\itemsep{0pt}
+    \item \textbf{Grafo Conexo:} Um grafo é conexo se existe um caminho entre todos os pares de vértices. Caso contrário, o grafo é desconexo.
+    \item \textbf{Componente Conexo:} Um subgrafo conexo maximal de um grafo $G$.
+    \item \textbf{Grafo Bipartido:} Um grafo é bipartido se é possível dividir os vértices em dois conjuntos disjuntos de forma que todas as arestas conectem um vértice de um conjunto com um vértice do outro conjunto, ou seja, não existem arestas que conectem vértices do mesmo conjunto.
+\end{itemize}
+
+\subsection{Árvores}
+
+\begin{itemize}\setlength\itemsep{0pt}
+    \item \textbf{Árvore:} Um grafo acíclico (sem ciclo) e conexo.
+    \item \textbf{Folhas:} Vértices de grau 1.
+    \item \textbf{Raiz:} Uma árvore pode ser enraizada por um vértice qualquer (introduz noção de pai e filhos).
+    \item \textbf{Árvore Geradora Mínima (AGM):} Uma árvore que conecta todos os vértices de um grafo e possui o menor custo possível, também conhecido como \textit{Minimum Spanning Tree (MST)}.
+\end{itemize}
+
+Afirmações equivalentes para uma árvore $G$:
+\begin{itemize}\setlength\itemsep{0pt}
+    \item $G$ é uma árvore $\iff$ $G$ é um grafo conexo e $|E| = |V| - 1$.
+    \item $G$ é uma árvore $\iff$ Para todo $v, w \in G$ existe EXATAMENTE UM caminho de $v$ para $w$.
+    \item $G$ é uma árvore $\iff$ $G$ é conexo e a remoção de qualquer aresta o torna desconexo.
+    \item $G$ é uma árvore $\iff$ $G$ não contém ciclos, mas adicionar qualquer aresta a $G$ cria um ciclo.
+\end{itemize}
+
+\subsubsection{Diâmetro}
+
+Consiste no maior caminho de uma árvore.
+
+\textbf{Algoritmo:}
+\begin{enumerate}\setlength\itemsep{0pt}
+    \item Roda BFS a partir de um vértice qualquer $u$ para encontrar o vértice $v$ mais distante.
+    \item Roda BFS a partir do vértice $v$ para encontrar o vértice $w$ mais distante. O caminho de $v$ a $w$ é o diâmetro.
+\end{enumerate}

@@ -1,0 +1,223 @@
+Os templates da STL são estruturas de dados e algoritmos já implementados em C++ que facilitam as implementações, além de serem muito eficientes. Em geral, todas estão incluídas no cabeçalho \code{<bits/stdc++.h>}. As estruturas são templates genéricos, podendo ser usadas com qualquer tipo; todos os exemplos a seguir são com \code{int} apenas por motivos de simplicidade.
+
+\subsubsection{Vector}
+
+Um vetor dinâmico (que pode crescer e diminuir de tamanho).
+\begin{itemize}\setlength\itemsep{0pt}
+    \item \code{vector<int> v(n, x)}: Cria um vetor de inteiros com \code{n} elementos inicializados com \code{x} \bigO{n}.
+    \item \code{v.push\_back(x)}: Adiciona o elemento \code{x} no final do vetor \bigO{1}.
+    \item \code{v.pop\_back()}: Remove o último elemento do vetor \bigO{1}.
+    \item \code{v.size()}: Retorna o tamanho do vetor \bigO{1}.
+    \item \code{v.empty()}: Retorna \code{true} se o vetor estiver vazio \bigO{1}.
+    \item \code{v.clear()}: Remove todos os elementos do vetor \bigO{n}.
+    \item \code{v.front()}: Retorna o primeiro elemento do vetor \bigO{1}.
+    \item \code{v.back()}: Retorna o último elemento do vetor \bigO{1}.
+    \item \code{v.begin()}: Retorna um iterador para o primeiro elemento do vetor \bigO{1}.
+    \item \code{v.end()}: Retorna um iterador para o elemento seguinte ao último do vetor \bigO{1}.
+    \item \code{v.insert(it, x)}: Insere o elemento \code{x} na posição apontada pelo iterador \code{it} \bigO{n}.
+    \item \code{v.erase(it)}: Remove o elemento apontado pelo iterador \code{it} \bigO{n}.
+    \item \code{v.erase(it1, it2)}: Remove elementos no intervalo \code{[it1, it2)} \bigO{n}.
+    \item \code{v.resize(n)}: Redimensiona o vetor para \code{n} elementos \bigO{n}.
+    \item \code{v.resize(n, x)}: Redimensiona o vetor para \code{n} elementos, todos inicializados com \code{x} \bigO{n}.
+\end{itemize}
+
+\subsubsection{Pair}
+
+Um par de elementos (de tipos possivelmente diferentes).
+\begin{itemize}\setlength\itemsep{0pt}
+    \item \code{pair<int, int> p}: Cria um par de inteiros \bigO{1}.
+    \item \code{p.first}: Retorna o primeiro elemento do par \bigO{1}.
+    \item \code{p.second}: Retorna o segundo elemento do par \bigO{1}.
+\end{itemize}
+
+\subsubsection{Set}
+
+Um conjunto de elementos únicos. Por baixo, é uma árvore de busca binária balanceada.
+\begin{itemize}\setlength\itemsep{0pt}
+    \item \code{set<int> s}: Cria um conjunto de inteiros \bigO{1}.
+    \item \code{s.insert(x)}: Insere o elemento \code{x} no conjunto \bigO{\log n}.
+    \item \code{s.erase(x)}: Remove o elemento \code{x} do conjunto \bigO{\log n}.
+    \item \code{s.find(x)}: Retorna um iterador para \code{x}; se \code{x} não existir, retorna \code{s.end()} \bigO{\log n}.
+    \item \code{s.size()}: Retorna o tamanho do conjunto \bigO{1}.
+    \item \code{s.empty()}: Retorna \code{true} se estiver vazio \bigO{1}.
+    \item \code{s.clear()}: Remove todos os elementos \bigO{n}.
+    \item \code{s.begin()}: Retorna um iterador para o primeiro elemento \bigO{1}.
+    \item \code{s.end()}: Retorna um iterador para após o último elemento \bigO{1}.
+\end{itemize}
+
+\subsubsection{Multiset}
+
+Basicamente um \code{set}, mas permite elementos repetidos. Possui todos os métodos de um \code{set}.
+
+Declaração: \code{multiset<int> ms}.
+
+Um detalhe é que, ao usar o método \code{erase}, ele remove todas as ocorrências do elemento. Para remover apenas uma ocorrência, usar \code{ms.erase(ms.find(x))}.
+
+\subsubsection{Map}
+
+Um conjunto de pares chave-valor, onde as chaves são únicas. Por baixo, é uma árvore de busca binária balanceada.
+\begin{itemize}\setlength\itemsep{0pt}
+    \item \code{map<int, int> m}: Cria um mapa de inteiros para inteiros \bigO{1}.
+    \item \code{m[key]}: Retorna o valor associado à chave \code{key} \bigO{\log n}.
+    \item \code{m[key] = value}: Associa o valor \code{value} à chave \code{key} \bigO{\log n}.
+    \item \code{m.erase(key)}: Remove a chave do mapa \bigO{\log n}.
+    \item \code{m.find(key)}: Retorna um iterador para o par chave-valor com chave \code{key}, ou \code{m.end()} se não existir \bigO{\log n}.
+    \item \code{m.size()}: Retorna o tamanho do mapa \bigO{1}.
+    \item \code{m.empty()}: Retorna \code{true} se estiver vazio \bigO{1}.
+    \item \code{m.clear()}: Remove todos os pares chave-valor \bigO{n}.
+    \item \code{m.begin()}: Retorna um iterador para o primeiro par chave-valor \bigO{1}.
+    \item \code{m.end()}: Retorna um iterador para após o último par chave-valor \bigO{1}.
+\end{itemize}
+
+\subsubsection{Queue}
+
+Uma fila (primeiro a entrar, primeiro a sair).
+\begin{itemize}\setlength\itemsep{0pt}
+    \item \code{queue<int> q}: Cria uma fila de inteiros \bigO{1}.
+    \item \code{q.push(x)}: Adiciona o elemento \code{x} no final da fila \bigO{1}.
+    \item \code{q.pop()}: Remove o primeiro elemento da fila \bigO{1}.
+    \item \code{q.front()}: Retorna o primeiro elemento da fila \bigO{1}.
+    \item \code{q.size()}: Retorna o tamanho da fila \bigO{1}.
+    \item \code{q.empty()}: Retorna \code{true} se a fila estiver vazia \bigO{1}.
+\end{itemize}
+
+\subsubsection{Priority Queue}
+
+Uma fila de prioridade (o maior elemento é o primeiro a sair).
+\begin{itemize}\setlength\itemsep{0pt}
+    \item \code{priority\_queue<int> pq}: Cria uma fila de prioridade de inteiros \bigO{1}.
+    \item \code{pq.push(x)}: Adiciona o elemento \code{x} na fila de prioridade \bigO{\log n}.
+    \item \code{pq.pop()}: Remove o maior elemento da fila \bigO{\log n}.
+    \item \code{pq.top()}: Retorna o maior elemento da fila \bigO{1}.
+    \item \code{pq.size()}: Retorna o tamanho da fila de prioridade \bigO{1}.
+    \item \code{pq.empty()}: Retorna \code{true} se a fila estiver vazia \bigO{1}.
+\end{itemize}
+
+Para fazer uma fila de prioridade em que o menor elemento sai primeiro, use \code{priority\_queue<int, vector<int>, greater<int>> pq}.
+
+\subsubsection{Stack}
+
+Uma pilha (último a entrar, primeiro a sair).
+\begin{itemize}\setlength\itemsep{0pt}
+    \item \code{stack<int> s}: Cria uma pilha de inteiros \bigO{1}.
+    \item \code{s.push(x)}: Adiciona o elemento \code{x} no topo da pilha \bigO{1}.
+    \item \code{s.pop()}: Remove o elemento do topo da pilha \bigO{1}.
+    \item \code{s.top()}: Retorna o elemento do topo da pilha \bigO{1}.
+    \item \code{s.size()}: Retorna o tamanho da pilha \bigO{1}.
+    \item \code{s.empty()}: Retorna \code{true} se a pilha estiver vazia \bigO{1}.
+\end{itemize}
+
+\subsubsection{Bitset}
+
+Um conjunto de bits, serve para representar máscaras quando um inteiro não é suficiente. Possui operações bitwise otimizadas pelo processador.
+\begin{itemize}\setlength\itemsep{0pt}
+    \item \code{bitset<N> a}: Cria um bitset de tamanho \code{N} (\code{N} deve ser constante) \bigO{1}.
+    \item \code{a[i]}: Retorna o valor do bit na posição \code{i} \bigO{1}.
+    \item \code{a.count()}: Retorna o número de bits 1 no bitset \bigO{N/w}.
+    \item \code{a.size()}: Retorna o tamanho do bitset \bigO{1}.
+    \item \code{a.set(i)}: Seta o bit na posição \code{i} para 1 \bigO{1}.
+    \item \code{a.set()}: Seta todos os bits para 1 \bigO{N/w}.
+    \item \code{a.reset(i)}: Seta o bit na posição \code{i} para 0 \bigO{1}.
+    \item \code{a.reset()}: Seta todos os bits para 0 \bigO{N/w}.
+    \item \code{a.flip(i)}: Inverte o bit na posição \code{i} \bigO{1}.
+    \item \code{a.flip()}: Inverte todos os bits \bigO{N/w}.
+    \item \code{a.to\_ullong()}: Retorna o valor do bitset como um inteiro \bigO{N/w}.
+\end{itemize}
+
+O bitset também suporta operações como \code{\&}, \code{|}, \code{\^}, \code{\~}, \code{<<}, \code{>>}, entre outros.
+
+Obs: \code{w} é o tamanho da palavra do processador, em geral 32 ou 64 bits.
+
+\subsubsection{Funções úteis}
+
+\begin{itemize}\setlength\itemsep{0pt}
+    \item \code{min(a, b)}: Retorna o menor entre \code{a} e \code{b} \bigO{1}.
+    \item \code{max(a, b)}: Retorna o maior entre \code{a} e \code{b} \bigO{1}.
+    \item \code{abs(a)}: Retorna o valor absoluto de \code{a} \bigO{1}.
+    \item \code{swap(a, b)}: Troca os valores de \code{a} e \code{b} \bigO{1}.
+    \item \code{sqrt(a)}: Retorna a raiz quadrada de \code{a} \bigO{\log a}.
+    \item \code{ceil(a)}: Retorna o menor inteiro maior ou igual a \code{a} \bigO{1}.
+    \item \code{floor(a)}: Retorna o maior inteiro menor ou igual a \code{a} \bigO{1}.
+    \item \code{round(a)}: Retorna o inteiro mais próximo de \code{a} \bigO{1}.
+\end{itemize}
+
+\subsubsection{Funções úteis para vetores}
+
+Para usar em \code{std::vector}, sempre passar \code{v.begin()} e \code{v.end()} como argumentos para essas funções.
+
+Se for um vetor estilo C, usar \code{v} e \code{v + n}. Exemplo:
+\[
+\code{int v[10];}\qquad \code{sort(v, v + 10);}
+\]
+
+\textbf{Lembrete:} \code{v.end()} é um iterador para o elemento seguinte ao último do vetor, então não é um iterador válido.
+
+As funções de vetor em geral são da forma \code{[L, R)}, ou seja, \code{L} é incluso e \code{R} é exclusivo.
+\begin{itemize}\setlength\itemsep{0pt}
+    \item \code{fill(v.begin(), v.end(), x)}: Preenche o vetor \code{v} com o valor \code{x} \bigO{n}.
+    \item \code{sort(v.begin(), v.end())}: Ordena o vetor \code{v} \bigO{n\log n}.
+    \item \code{reverse(v.begin(), v.end())}: Inverte o vetor \code{v} \bigO{n}.
+    \item \code{accumulate(v.begin(), v.end(), 0)}: Soma todos os elementos do vetor \code{v} \bigO{n}.
+    \item \code{max\_element(v.begin(), v.end())}: Retorna um iterador para o maior elemento do vetor \code{v} \bigO{n}.
+    \item \code{min\_element(v.begin(), v.end())}: Retorna um iterador para o menor elemento do vetor \code{v} \bigO{n}.
+    \item \code{count(v.begin(), v.end(), x)}: Retorna o número de ocorrências do elemento \code{x} no vetor \code{v} \bigO{n}.
+    \item \code{find(v.begin(), v.end(), x)}: Retorna um iterador para a primeira ocorrência de \code{x} no vetor \code{v}, ou \code{v.end()} se não existir \bigO{n}.
+    \item \code{lower\_bound(v.begin(), v.end(), x)}: Retorna um iterador para o primeiro elemento maior ou igual a \code{x}; o vetor deve estar ordenado \bigO{\log n}.
+    \item \code{upper\_bound(v.begin(), v.end(), x)}: Retorna um iterador para o primeiro elemento estritamente maior que \code{x}; o vetor deve estar ordenado \bigO{\log n}.
+    \item \code{next\_permutation(a.begin(), a.end())}: Rearranja os elementos do vetor \code{a} para a próxima permutação lexicograficamente maior \bigO{n}.
+\end{itemize}
+
+\subsubsection{Pragmas}
+
+Os pragmas são diretivas para o compilador, que podem ser usadas para otimizar o código.
+
+Temos os pragmas de otimização, como por exemplo:
+\begin{itemize}\setlength\itemsep{0pt}
+    \item \code{\#pragma GCC optimize("O2")}: Otimizações de nível 2 (padrão de competições)
+    \item \code{\#pragma GCC optimize("O3")}: Otimizações de nível 3 (seguro para usar)
+    \item \code{\#pragma GCC optimize("Ofast")}: Otimizações agressivas (perigoso!)
+    \item \code{\#pragma GCC optimize("unroll-loops")}: Otimiza os loops mas pode levar a \textit{cache misses}
+\end{itemize}
+
+E também os pragmas de \textit{target}, que são usados para otimizar o código para um certo processador:
+\begin{itemize}\setlength\itemsep{0pt}
+    \item \code{\#pragma GCC target("avx2")}: Otimiza instruções para processadores com suporte a AVX2
+    \item \code{\#pragma GCC target("sse4")}: Parecido com o de cima, mas mais antigo
+    \item \code{\#pragma GCC target("popcnt")}: Otimiza o \textit{popcount} em processadores que suportam
+    \item \code{\#pragma GCC target("lzcnt")}: Otimiza o \textit{leading zero count} em processadores que suportam
+    \item \code{\#pragma GCC target("bmi")}: Otimiza instruções de \textit{bit manipulation} em processadores que suportam
+    \item \code{\#pragma GCC target("bmi2")}: Mesmo que o de cima, mas mais recente
+\end{itemize}
+
+Em geral, esses pragmas são usados para otimizar o código em competições, mas é importante usá-los com certa sabedoria, em alguns casos eles podem piorar o desempenho do código.
+
+Uma opção relativamente segura de se usar é a seguinte:
+\begin{verbatim}
+#pragma GCC optimize("O3,unroll-loops")
+#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
+\end{verbatim}
+
+\subsubsection{Constantes em C++}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Constante & Nome em C++ & Valor \\
+\hline
+$\pi$ & \code{M\_PI} & 3.141592\dots \\
+$\pi/2$ & \code{M\_PI\_2} & 1.570796\dots \\
+$\pi/4$ & \code{M\_PI\_4} & 0.785398\dots \\
+$1/\pi$ & \code{M\_1\_PI} & 0.318309\dots \\
+$2/\pi$ & \code{M\_2\_PI} & 0.636619\dots \\
+$2/\sqrt{\pi}$ & \code{M\_2\_SQRTPI} & 1.128379\dots \\
+$\sqrt{2}$ & \code{M\_SQRT2} & 1.414213\dots \\
+$1/\sqrt{2}$ & \code{M\_SQRT1\_2} & 0.707106\dots \\
+$e$ & \code{M\_E} & 2.718281\dots \\
+$\log_2 e$ & \code{M\_LOG2E} & 1.442695\dots \\
+$\log_{10} e$ & \code{M\_LOG10E} & 0.434294\dots \\
+$\ln 2$ & \code{M\_LN2} & 0.693147\dots \\
+$\ln 10$ & \code{M\_LN10} & 2.302585\dots \\
+\hline
+\end{tabular}
+\end{center}
+
