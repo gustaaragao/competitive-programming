@@ -29,6 +29,8 @@ int upd(int i, int x, int p=1, int l=0, int r=n-1) { // O(log(n))
     return seg[p] = merge(upd(i, x, 2*p, l, m), upd(i, x, 2*p+1, m+1, r));
 }
 // primeira posição >= x em [a, b] (ou -1, caso não exista)
+// encontrar o menor índice em [a, b]
+// posso passar (x+1) para buscar 'primeira posição > x' 
 // Obs.: Só funciona na SegTree de Máximos
 int first_above(int x, int a, int b, int p=1, int l=0, int r=n-1) { // O(log(n))
     if (b < l or r < a or seg[p] < x) return -1;
@@ -39,6 +41,8 @@ int first_above(int x, int a, int b, int p=1, int l=0, int r=n-1) { // O(log(n))
 	return first_above(x, a, b, 2*p+1, m+1, r);
 }
 // última posição >= x em [a, b] (ou -1, caso não exista)
+// encontrar o maior índice em [a, b]
+// posso passar (x + 1) para buscar 'última posição > x'
 // Obs.: Só funciona na SegTree de Máximos
 int last_above(int x, int a, int b, int p=1, int l=0, int r=n-1) { // O(log(n))
     if (b < l or r < a or seg[p] < x) return -1;
