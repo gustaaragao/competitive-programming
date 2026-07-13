@@ -2,11 +2,11 @@
 using namespace std;
 #define pb push_back
 const int MAXN = 2e5+5;
-
 bool vis[MAXN];
 int n, m, color[MAXN];
 vector<int> adj[MAXN];
-
+// Teorema: um grafo é bipartido sse todos os seus ciclos tem tamanho par.
+// um grafo é bipartido sse ele é two-colorable.
 bool dfs(int v) {
     for (auto u : adj[v]) {
         if (color[u] == -1) {
@@ -18,7 +18,6 @@ bool dfs(int v) {
     }
     return true;
 }
-
 signed main() {
     memset(color, -1, sizeof(color));
     cin >> n >> m;
@@ -37,7 +36,6 @@ signed main() {
             }
         }
     }
-
     if (valid) {
         for (int v = 0; v < n; v++) cout << color[v] << " ";
         cout << endl;
