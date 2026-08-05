@@ -47,6 +47,8 @@ struct kuhn {
 };
 // recover() responde o problema de minimum vertex cover
 // quantidade mínima de vértices escolhidos que garante que todas arestas estão sendo "observadas"
+// Segundo o Teorema de Kőnig, a cardinalidade do minimum vertex cover é o emparelhamento máximo
+// esse problema é NP-Difícil para grafos no geral e é possível resolver em tempo polinomial para bipartidos
 pair<vi, vi> recover(kuhn &k) { // O(V*E)
     k.matching();
 	int n = k.n, m = k.m;
