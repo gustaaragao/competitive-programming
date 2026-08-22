@@ -12,10 +12,11 @@ struct pt {
     int x, y;
     pt(int a=0, int b=0) : x(a), y(b) {}
     friend istream &operator>>(istream &in, pt &p) {
-		int x, y; in >> p.x >> p.y; return in;
+		in >> p.x >> p.y; return in;
 	}
     bool operator < (const pt p) const {
-		if (x != p.x) return x < p.x; return y < p.y;
+		if (x != p.x) return x < p.x;
+		return y < p.y;
 	}
 	bool operator == (const pt p) const {
 		return x == p.x and y == p.y;
@@ -34,7 +35,7 @@ int area2(pt p, pt q, pt r) { return (q - p) ^ (r - q); }
 
 int polarea2(vector<pt> v) {
     int ret = 0;
-    for (int i = 0; i < v.size(); i++)
+    for (int i = 0; i < (int)v.size(); i++)
         ret += area2(pt(0, 0), v[i], v[(i+1) % v.size()]);
     return abs(ret);
 }

@@ -21,7 +21,7 @@ int main(){ _
     string s; cin >> s;
     
     int ans = 1, count = 1;
-    for (int i = 1; i < s.size(); i++) {
+    for (int i = 1; i < (int)s.size(); i++) {
         if (s[i - 1] != s[i]) count = 1;
         else count++;
         ans = max(ans, count);

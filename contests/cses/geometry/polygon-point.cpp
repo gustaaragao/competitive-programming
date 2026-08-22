@@ -12,10 +12,11 @@ struct pt {
     int x, y;
     pt(int a=0, int b=0) : x(a), y(b) {}
     friend istream &operator>>(istream &in, pt &p) {
-		int x, y; in >> p.x >> p.y; return in;
+		in >> p.x >> p.y; return in;
 	}
     bool operator < (const pt p) const {
-		if (x != p.x) return x < p.x; return y < p.y;
+		if (x != p.x) return x < p.x;
+		return y < p.y;
 	}
 	bool operator == (const pt p) const {
 		return x == p.x and y == p.y;
@@ -32,7 +33,7 @@ struct pt {
 
 int inpol(vector<pt>& v, pt p) { // O(|v|)
     int qt = 0;
-    for (int i = 0; i < v.size(); i++) {
+    for (int i = 0; i < (int)v.size(); i++) {
         if (p == v[i]) return 2;
         int j = (i + 1) % v.size();
         if (p.y == v[i].y and p.y == v[j].y) {

@@ -26,7 +26,7 @@ void coordinate_compression(vector<int> &a) {
     }
 
     // Alterando o valor de a
-    for (int i = 0; i < a.size(); i++) {
+    for (int i = 0; i < (int)a.size(); i++) {
         a[i] = mp[a[i]];
     }
 }

@@ -14,10 +14,11 @@ struct pt {
     int x, y;
     pt(int a=0, int b=0) : x(a), y(b) {}
     friend istream &operator>>(istream &in, pt &p) {
-		int x, y; in >> p.x >> p.y; return in;
+		in >> p.x >> p.y; return in;
 	}
     bool operator < (const pt p) const {
-		if (x != p.x) return x < p.x; return y < p.y;
+		if (x != p.x) return x < p.x;
+		return y < p.y;
 	}
 	bool operator == (const pt p) const {
 		return x == p.x and y == p.y;
@@ -36,7 +37,7 @@ struct line {
     line() {}
     line(pt _p, pt _q) : p(_p), q(_q) {}
     friend istream &operator>>(istream &in, line &r) {
-        int x, y; in >> r.p >> r.q; return in;
+        in >> r.p >> r.q; return in;
     }
 };
 /* PONTO e VETOR */
