@@ -81,3 +81,6 @@ tags
 # End of https://www.toptal.com/developers/gitignore/api/vim,c
 
 # Generated using ignr.py - github.com/Antrikshy/ignr.py
+
+# cses_scraper: nunca versionar credenciais
+tools/cses_scraper/accounts.json

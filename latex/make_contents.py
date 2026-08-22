@@ -109,24 +109,35 @@ def write_folders_content(f, biblioteca_path):
     
     # Ignorar esses arquivos/pastas (gerais)
     ignore_files_general = ['cpp.json', 'makefile.json', 'build_library.py', 'README_BUILD.md', '.gitignore']
-    
+
     # Ignorar nas pastas que não são utils
     ignore_files_non_utils = ignore_files_general + ['Makefile', 'vimrc', 'template.cpp']
-    
+
     # Escanear diretórios
     for item in sorted(directory.iterdir()):
         if not item.is_dir() or item.name.startswith('.'):
             continue
-        
+
         folder_name = item.name
+
+        # classics/ (soluções do CSES baixadas pelo cses_scraper) tem uma
+        # estrutura de dois níveis (tema/problema), diferente do resto da
+        # biblioteca (que é só um nível). Cada tema vira sua própria seção,
+        # prefixada com "Classics" pra não colidir com as seções normais
+        # (ex: "dp/" já usa o título "Dynamic Programming").
+        if folder_name == 'classics':
+            write_classics_content(f, item, latex_dir)
+            continue
+
         section_name = category_names.get(folder_name, folder_name.replace('-', ' ').title())
         
         # Listar arquivos no diretório
         # Para utils, incluir todos os arquivos (exceto ignorados gerais)
         # Para outras pastas, apenas .cpp (exceto template.cpp e outros ignorados)
         if folder_name == 'utils':
-            code_files = sorted([f for f in item.iterdir() 
-                               if f.is_file() and f.name not in ignore_files_general])
+            code_files = sorted([f for f in item.iterdir()
+                               if f.is_file() and f.name not in ignore_files_general
+                               and not f.name.startswith('.')])
         elif folder_name == 'teoria':
             code_files = sorted([f for f in item.glob('*.tex')])
         else:
@@ -160,7 +171,43 @@ def write_folders_content(f, biblioteca_path):
                     dest.write(content)
                 else:
                     dest.write(normalize(content))
-        
+
+        f.write('\n')
+
+
+def write_classics_content(f, classics_dir, latex_dir):
+    """Escreve uma seção por tema dentro de classics/ (soluções do CSES).
+
+    classics/<tema>/<problema>.<ext>, ao contrário do resto da biblioteca,
+    tem dois níveis. Cada tema (ex: dynamic-programming) vira uma seção
+    "Classics - <Tema>", e cada problema uma subseção. Os arquivos são
+    copiados para code/ com um prefixo (classics__<tema>__) pra nunca
+    colidir com um arquivo de template de mesmo nome.
+    """
+    for theme_dir in sorted(p for p in classics_dir.iterdir() if p.is_dir() and not p.name.startswith('.')):
+        code_files = sorted(
+            fp for fp in theme_dir.iterdir()
+            if fp.is_file() and fp.suffix in ('.cpp', '.py')
+        )
+        if not code_files:
+            continue
+
+        section_name = f"Classics - {theme_dir.name.replace('-', ' ').title()}"
+        f.write(f'[{section_name}]\n')
+
+        for code_file in code_files:
+            subsection_name = format_name(code_file.name)
+            dest_filename = f"classics__{theme_dir.name}__{code_file.name}"
+
+            f.write(f'{dest_filename}\t{subsection_name}\n')
+
+            with open(code_file, 'r', encoding='utf-8') as source:
+                content = source.read()
+
+            dest_path = latex_dir / 'code' / dest_filename
+            with open(dest_path, 'w', encoding='utf-8') as dest:
+                dest.write(normalize(content))
+
         f.write('\n')
 
 
