@@ -18,9 +18,19 @@ struct fenw {
             ans += bit[i];
         return ans;
     }
-    // atualiza o valor a[r] = x
-    void upd(int r, int x) {
+    // atualiza o valor a[r] += x
+    void add(int r, int x) {
         for (int i = r + 1; i <= n; i += i & -i) bit[i] += x;
+    }
+    // define o valor a[r] = x (substitui, nao incrementa)
+    void set(int r, int x) {
+        int orig = qry(r) - qry(r - 1);
+        add(r, x - orig);
+    }
+    // soma do intervalo a[l] + a[l+1] + ... + a[r]   (assume l <= r)
+    int sum(int l, int r) {
+        if (l > r) return 0;
+        return qry(r) - qry(l - 1);
     }
     // busca binária para o maior índice i (i < n) tal que qry(i) < x
     int bs(int x) {

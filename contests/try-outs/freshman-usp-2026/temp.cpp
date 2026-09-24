@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ff first
+#define ss second
+#define pb push_back
+// #define int long long
+#define endl '\n' //<< flush
+#define sz(x) (int) (x).size()
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+#define dbg(x) cerr << #x << " = " << x << endl
+#define pdbg(x) cerr << #x << " = " << x.ff << "," << x.ss << endl
+#define uniq(v) sort(all(v)); v.erase(unique(all(v)), v.end())
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+typedef long long ll;
+typedef long double ld;
+typedef pair<int, int> pi;
+typedef vector<int> vi;
+typedef vector<ll> vll;
+typedef vector<ld> vld;
+typedef vector<pi> vpi;
+const ld EPS = 1e-9;
+const int MOD = 1e9 + 7; // 998244353;
+const int INF = 0x3f3f3f3f;
+const ll LINF = 0x3f3f3f3f3f3f3f3fll;
+const int MAXN = 1e2+10;
+
+void solve() {
+    
+}
+
+signed main() {
+    ios_base::sync_with_stdio(0);cin.tie(0);
+    cout.precision(10); cout.setf(ios::fixed);
+    int tc = 1;
+    // cin >> tc;
+    while (tc--) solve();
+}
