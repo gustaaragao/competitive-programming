@@ -6,6 +6,8 @@ Baseado no script do stanfordacm
 
 import subprocess
 import sys
+import shutil
+import os
 from pathlib import Path
 
 CODE_DIR = "code"
@@ -46,8 +48,8 @@ def get_sections():
                     subsections.append((filename, subsection_name))
     
     except FileNotFoundError:
-        ("❌ Arquivo contents.txt não encontrado!")
-        ("📝 Execute 'python3 make_contents.py' primeiro")
+        print("❌ Arquivo contents.txt não encontrado!")
+        print("📝 Execute 'python3 make_contents.py' primeiro")
         sys.exit(1)
     
     return sections
@@ -106,110 +108,126 @@ def get_tex(sections):
 
 
 def compile_latex():
-    """Compila o PDF usando latexmk"""
-    ("🔨 Compilando PDF com LaTeX...")
-    ()
+    """Compila o PDF usando latexmk ou pdflatex."""
+    print("🔨 Compilando PDF com LaTeX...")
+    print()
     
     try:
-        # Verificar se latexmk está instalado
-        result = subprocess.run(['which', 'latexmk'], 
-                              capture_output=True, 
-                              text=True)
-        
-        if result.returncode != 0:
-            ("❌ latexmk não encontrado!")
-            ("📦 Instale com:")
-            ("   sudo apt-get install texlive-full")
-            ("   sudo apt-get install latexmk")
+        if shutil.which("latexmk"):
+            compile_cmd = [
+                "latexmk",
+                "-pdf",
+                "-interaction=nonstopmode",
+                "-halt-on-error",
+                "notebook.tex",
+            ]
+            runs = 1
+        elif shutil.which("pdflatex"):
+            compile_cmd = [
+                "pdflatex",
+                "-interaction=nonstopmode",
+                "-halt-on-error",
+                "notebook.tex",
+            ]
+            runs = 2
+        else:
+            print("❌ Nenhum compilador LaTeX encontrado!")
+            print("📦 Instale com:")
+            print("   sudo apt-get install texlive-full latexmk")
             return False
+
+        pdf_path = Path("notebook.pdf")
+        if pdf_path.exists():
+            pdf_path.unlink()
+
+        last_result = None
+        for _ in range(runs):
+            last_result = subprocess.run(
+                compile_cmd,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+            )
+            if last_result.returncode != 0:
+                break
         
-        # Compilar PDF múltiplas vezes para gerar TOC corretamente
-        # Primeira passagem: coleta informações das seções
-        pdflatex_cmd = ["pdflatex", "-interaction=nonstopmode", "notebook.tex"]
-        subprocess.run(pdflatex_cmd, 
-                      capture_output=True, 
-                      text=True,
-                      encoding='utf-8',
-                      errors='replace')
-        
-        # Segunda passagem: gera o TOC
-        subprocess.run(pdflatex_cmd, 
-                      capture_output=True, 
-                      text=True,
-                      encoding='utf-8',
-                      errors='replace')
-        
-        # Verificar se o PDF foi gerado
-        pdf_exists = Path('notebook.pdf').exists()
-        
-        if not pdf_exists:
-            ("❌ Erro ao compilar LaTeX")
+        if last_result is None or last_result.returncode != 0 or not pdf_path.exists():
+            print("❌ Erro ao compilar LaTeX")
+            if last_result:
+                output = (last_result.stdout or "") + (last_result.stderr or "")
+                if output.strip():
+                    print()
+                    print(output[-4000:])
             return False
         
         return True
     
     except Exception as e:
-        (f"❌ Erro ao compilar: {e}")
+        print(f"❌ Erro ao compilar: {e}")
         return False
 
 
 def main():
     """Função principal"""
-    ("=" * 70)
-    ("  📄 GERADOR DE PDF DA BIBLIOTECA")
-    ("=" * 70)
-    ()
+    os.chdir(Path(__file__).resolve().parent)
+
+    print("=" * 70)
+    print("  📄 GERADOR DE PDF DA BIBLIOTECA")
+    print("=" * 70)
+    print()
     
     # Verificar se código está em diretório correto
     if not Path('code').exists():
-        ("❌ Pasta code/ não encontrada!")
-        ("📝 Execute 'python3 make_contents.py' primeiro")
+        print("❌ Pasta code/ não encontrada!")
+        print("📝 Execute 'python3 make_contents.py' primeiro")
         return
     
     # Verificar se notebook.tex existe
     if not Path('notebook.tex').exists():
-        ("❌ Arquivo notebook.tex não encontrado!")
-        ("📝 Certifique-se de que o template LaTeX existe")
+        print("❌ Arquivo notebook.tex não encontrado!")
+        print("📝 Certifique-se de que o template LaTeX existe")
         return
     
     # Ler seções
-    ("📚 Lendo contents.txt...")
+    print("📚 Lendo contents.txt...")
     sections = get_sections()
-    (f"✅ {len(sections)} seções encontradas")
-    ()
+    print(f"✅ {len(sections)} seções encontradas")
+    print()
     
     # Gerar contents.tex
-    ("📝 Gerando contents.tex...")
+    print("📝 Gerando contents.tex...")
     tex = get_tex(sections)
     
     with open('contents.tex', 'w', encoding='utf-8') as f:
         f.write(tex)
     
-    (f"✅ contents.tex gerado ({len(tex)} bytes)")
-    ()
+    print(f"✅ contents.tex gerado ({len(tex)} bytes)")
+    print()
     
     # Compilar PDF
     if compile_latex():
-        ()
-        ("=" * 70)
-        ("✅ PDF gerado com sucesso: notebook.pdf")
-        ("=" * 70)
-        ()
+        print()
+        print("=" * 70)
+        print("✅ PDF gerado com sucesso: notebook.pdf")
+        print("=" * 70)
+        print()
         
         # Limpar arquivos auxiliares
-        ("🧹 Limpando arquivos auxiliares...")
+        print("🧹 Limpando arquivos auxiliares...")
         aux_extensions = ['.aux', '.fdb_latexmk', '.fls', '.log', '.out', '.toc']
         for ext in aux_extensions:
             aux_file = Path('notebook' + ext)
             if aux_file.exists():
                 aux_file.unlink()
-        ("✅ Limpeza concluída")
-        ()
+        print("✅ Limpeza concluída")
+        print()
     else:
-        ()
-        ("❌ Falha ao gerar PDF")
-        ("📝 Verifique se o LaTeX está instalado corretamente")
-        ()
+        print()
+        print("❌ Falha ao gerar PDF")
+        print("📝 Verifique se o LaTeX está instalado corretamente")
+        print()
+        sys.exit(1)
 
 
 if __name__ == "__main__":

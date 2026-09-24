@@ -18,15 +18,28 @@ def create_code_folder(directory):
 
 
 def normalize(s):
-    """Remove acentos e caracteres especiais (versão sem dependências)"""
+    """Converte texto de código para ASCII compatível com pdflatex/listings."""
     import unicodedata
-    
-    # Normaliza usando NFD (decomposição) e remove marcas diacríticas
-    normalized = unicodedata.normalize('NFD', s)
-    # Remove acentos (categoria Mn = Mark, Nonspacing)
-    result = ''.join(char for char in normalized if unicodedata.category(char) != 'Mn')
-    
-    return result
+
+    replacements = {
+        '–': '-',
+        '—': '-',
+        '−': '-',
+        '×': '*',
+        '÷': '/',
+        '≤': '<=',
+        '≥': '>=',
+        '≠': '!=',
+        '∞': 'inf',
+        '√': 'sqrt',
+        'π': 'pi',
+    }
+
+    for old, new in replacements.items():
+        s = s.replace(old, new)
+
+    normalized = unicodedata.normalize('NFKD', s)
+    return normalized.encode('ascii', 'ignore').decode('ascii')
 
 
 def format_name(filename):
@@ -88,7 +101,7 @@ def calculate_hash(file_path):
 def write_folders_content(f, biblioteca_path):
     """Escaneia a biblioteca e escreve no contents.txt"""
     directory = Path(biblioteca_path).resolve()
-    latex_dir = Path.cwd()
+    latex_dir = Path(__file__).resolve().parent
     
     create_code_folder(latex_dir)
     
@@ -213,13 +226,14 @@ def write_classics_content(f, classics_dir, latex_dir):
 
 def main():
     """Função principal"""
+    script_dir = Path(__file__).resolve().parent
+
     print("=" * 70)
     print("  📚 GERADOR DE CONTENTS.TXT")
     print("=" * 70)
     print()
     
     # Determinar caminho da biblioteca
-    script_dir = Path(__file__).parent
     biblioteca_path = script_dir.parent / 'biblioteca'
     
     if not biblioteca_path.exists():
